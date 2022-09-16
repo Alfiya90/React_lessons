@@ -1,18 +1,18 @@
 import classes from './Post.module.css';
 import React from "react";
+import Post from "./Post";
 
 
-const Post = () =>{
+
+const Posts = () =>{
     return <div>
-            <div>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
+                <div>
+                    <Post message ="jhsgjhgsdh" like  ='5'/>
+                    <Post message ="kshchuhu" like  ='8'/>
+                    <Post message ='kshchuhu' like  ='6'/>
+                </div>
             </div>
-        </div>
 
 }
 
-export default Post;
+export default Posts;
