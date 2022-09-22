@@ -4,12 +4,12 @@ import Post from "./Post";
 
 
 
-const Posts = () =>{
+const Posts = (props) =>{
+
+    let postElement = props.postData.map((post)=>(<Post message ={post.message} likes={post.likes}/>))
     return <div>
-                <div>
-                    <Post message ="jhsgjhgsdh" like  ='5'/>
-                    <Post message ="kshchuhu" like  ='8'/>
-                    <Post message ='kshchuhu' like  ='6'/>
+                <div className = {classes.post}>
+                    {postElement}
                 </div>
             </div>
 
