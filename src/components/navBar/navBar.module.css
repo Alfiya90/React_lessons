@@ -1,12 +1,16 @@
 .nav{
     grid-area: n;
     background-color: lightblue;
+
 }
 
-.style {
+.style a{
     color: blue;
+
+
 }
 
-.styleSetting {
-    color: slateblue;
+
+.style a.active{
+    color: darkblue;
 }

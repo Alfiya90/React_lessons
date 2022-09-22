@@ -2,14 +2,14 @@ import classes from "./Post.module.css";
 import React from "react";
 
 const Post = (props) => {
-    return <div className={classes.style} >
-        { props.message }
+    return (
+        <div className={classes.style}>
+            {props.message}
             <div>
-
-             <snop> like </snop>{ props.like }
-
+                <snop> likes</snop>
+                {props.likes}
             </div>
-            </div>
+        </div>)
 }
 
 export default Post;

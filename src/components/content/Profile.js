@@ -1,17 +1,22 @@
 import React from "react";
 import classes from './Profile.module.css';
 import Post from "./posts/Posts";
-console.log(classes)
+import ProfileInfo from "./profileInfo/ProfileInfo";
 
 
-const Profile =() => {
-    return <div>
+
+const Profile =(props) => {
+    /*let postData=[
+        {id:1, message:"Немного обо мне", likes:9 },
+        {id:3, message:"Важней всего погода в доме?", likes:8 },
+        {id:4, message:"Вкусный завтрак", likes:5},
+    ]*/
+debugger;
+    return(
         <div>
-            <img src='https://www.hdwallpaperspulse.com/wp-content/uploads/2018/01/19/blue-sea-natural-image.jpg'/>
-        </div>
-        <Post/>
-    </div>
-
+            <ProfileInfo/>
+            <Post postData={props.postData}/>
+        </div>)
 }
 
 export default Profile;

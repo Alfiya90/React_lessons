@@ -1,9 +1,9 @@
 import React from "react";
-import classes from './musics.module.scc'
+
 
 const Musics = () => {
     return  <div>
-                     Music
+                     <a>Music</a>
             </div>
 
 }
