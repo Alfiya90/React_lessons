@@ -5,13 +5,15 @@ import reportWebVitals from './reportWebVitals';
 import {addMessage} from "./dataBase/DateBase";
 import {addPost} from "./dataBase/DateBase";
 import dateBase from "./dataBase/DateBase";
+import {updateNewPostChar} from "./dataBase/DateBase";
+import {updateNewMessageChar} from "./dataBase/DateBase";
 
-
- export let rerenderEntireTree =(dateBase)=> {
+export let rerenderEntireTree =(dateBase)=> {
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(
         <React.StrictMode>
-            <App  dateBase={dateBase} addPost={addPost} addMessage ={addMessage}/>
+            <App  dateBase={dateBase} addPost={addPost} addMessage ={addMessage} updateNewPostChar={updateNewPostChar}
+                  updateNewMessageChar={updateNewMessageChar}/>
         </React.StrictMode>
     );
 }

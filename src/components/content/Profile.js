@@ -5,11 +5,13 @@ import ProfileInfo from "./profileInfo/ProfileInfo";
 
 
 
-const Profile =({addPost, postData}) => {
+const Profile =({addPost, postData,dispatch, newPostChar, updateNewPostChar}) => {
     return(
         <div>
             <ProfileInfo/>
-            <Posts postData={postData}/>
+            <Posts postData={postData} dispatch ={dispatch}
+                  /* addPost={addPost} newPostChar={newPostChar} updateNewPostChar={updateNewPostChar}*/
+            />
         </div>)
 }
 
