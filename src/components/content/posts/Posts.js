@@ -5,7 +5,7 @@ import PostsOther from "./PostsOther.module.css"
 import {addPost} from "./../../../dataBase/DateBase"
 
 
-const Posts = ({postData}) =>{
+const Posts = ({postData, addPost, newPostChar, updateNewPostChar}) =>{
 
     let postElement = postData.map((post)=>(<Post item={post} key={post.messageId.toString()}/>))
 
@@ -14,14 +14,19 @@ const Posts = ({postData}) =>{
     let addingPost =()=>{
 
         let text = newPostElement.current.value;
-        postData.addPost(text)
+        addPost(text)
+        updateNewPostChar('')
+    }
+    let onPostChange=()=>{
+        let text = newPostElement.current.value;
+        updateNewPostChar(text)
     }
 
 
     return <div >
                 <div>
                     <div className>
-                        <textarea ref={newPostElement}></textarea>
+                        <textarea onChange={onPostChange} ref={newPostElement} value={newPostChar}></textarea>
                     </div>
                     <div>
                         <button onClick={addingPost}>Add</button>

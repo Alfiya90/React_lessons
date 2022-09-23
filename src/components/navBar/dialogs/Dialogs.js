@@ -4,12 +4,14 @@ import {NavLink} from "react-router-dom";
 import DialogItem from "./dialogItem/DialogItem";
 import Message from "./Message/Message";
 import Profile from "../../content/Profile";
+import {updateNewPostChar} from "../../../dataBase/DateBase";
 
-const Dialogs = ({dialogData, messageData, addMessage}) => {
+const Dialogs = ({dialogData, messageData, addMessage, newMessageChar, updateNewMessageChar}) => {
     let  answerMessage = React.createRef();
     let addAnswer =()=>{
        let text = answerMessage.current.value;
         addMessage(text);
+        updateNewMessageChar('');
     }
     console.log("000000000", dialogData)
 
@@ -18,6 +20,11 @@ const Dialogs = ({dialogData, messageData, addMessage}) => {
 
     let messageElements = messageData
         .map((message)=>(<Message message={message.message} key ={message.dialogId.toString()}/>));
+
+    let onMessageChange =()=>{
+        let text = answerMessage.current.value;
+        updateNewMessageChar(text)
+    }
     return(
         <div className={classes.dialogs}>
             <div className={classes.dialogs}>Контакты</div>
@@ -29,7 +36,7 @@ const Dialogs = ({dialogData, messageData, addMessage}) => {
             <div className={classes.message}>
                 {messageElements}
                 <div>
-                    <textarea ref = {answerMessage}></textarea>
+                    <textarea onChange={onMessageChange} ref = {answerMessage} value={newMessageChar}></textarea>
                     <div>
                         <button onClick= {addAnswer}> Отправить</button>
                     </div>

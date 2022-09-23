@@ -7,7 +7,8 @@ let dateBase ={
             {id:1, message:"Немного обо мне", likes:4, messageId:1},
             {id:3, message:"Важней всего погода в доме?", likes:8, messageId:2},
             {id:4, message:"Вкусный завтрак", likes:5, messageId:3}
-        ]
+        ],
+        newPostChar:"post"
 
     },
 
@@ -23,7 +24,8 @@ let dateBase ={
             {id:1, message:"Привет!Как дела?", dialogId:11 },
             {id:3, message:"Мам, есть что нибудь вкусненькое?", dialogId:12 },
             {id:4, message:"Ты где?" ,dialogId:13},
-        ]
+        ],
+        newMessageChar:"message"
     }
 }
 const Counter ={
@@ -51,6 +53,16 @@ export let addMessage=(sendMessage)=>{
     Counter.dialogId+=1;
     dateBase.messagePage.messageData.push(newMessage)
      rerenderEntireTree(dateBase);
+}
+
+export let updateNewPostChar=(newChar)=>{
+    dateBase.profilePage.newPostChar=newChar;
+    rerenderEntireTree(dateBase)
+}
+
+export let updateNewMessageChar=(newChar)=>{
+    dateBase.messagePage.newMessageChar=newChar;
+    rerenderEntireTree(dateBase)
 }
 
 
