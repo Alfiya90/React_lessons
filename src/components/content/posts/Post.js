@@ -1,14 +1,14 @@
 import classes from "./Post.module.css";
 import React from "react";
 
-const Post = (props) => {
+const Post = ({item}) => {
     return (
-        <div className={classes.style}>
+        <div className={classes.image}>
             <img src ="https://filestore.community.support.microsoft.com/api/images/f2e55cbf-8316-4d3a-9412-ecd8194b2a72?upload=true"/>
-            {props.message}
+            {item.message}
             <div>
                 <snop> likes</snop>
-                {props.likes}
+                {item.likes}
             </div>
         </div>)
 }

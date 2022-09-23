@@ -5,18 +5,19 @@ import DialogItem from "./dialogItem/DialogItem";
 import Message from "./Message/Message";
 import Profile from "../../content/Profile";
 
-const Dialogs = (props) => {
+const Dialogs = ({dialogData, messageData, addMessage}) => {
     let  answerMessage = React.createRef();
-    let addAnswer =(props)=>{
+    let addAnswer =()=>{
        let text = answerMessage.current.value;
-       props.addMessage(text);
+        addMessage(text);
     }
+    console.log("000000000", dialogData)
 
-    let dialogElements = props.dialogData.dialogData
-        .map((dialog)=>(<DialogItem name={dialog.name} id={dialog.id} />));
+    let dialogElements = dialogData
+        .map((dialog)=>(<DialogItem name={dialog.name} id={dialog.id} key ={dialog.id.toString()}/>));
 
-    let messageElements = props.messageData.messageData
-        .map((message)=>(<Message message={message.message}/>));
+    let messageElements = messageData
+        .map((message)=>(<Message message={message.message} key ={message.dialogId.toString()}/>));
     return(
         <div className={classes.dialogs}>
             <div className={classes.dialogs}>Контакты</div>

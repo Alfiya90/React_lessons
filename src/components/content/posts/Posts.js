@@ -2,28 +2,29 @@ import classes from './Post.module.css';
 import React from "react";
 import Post from "./Post";
 import PostsOther from "./PostsOther.module.css"
+import {addPost} from "./../../../dataBase/DateBase"
 
 
+const Posts = ({postData}) =>{
 
-const Posts = (props) =>{
-
-debugger;
-    let postElement = props.postData.map((post)=>(<Post message ={post.message} likes={post.likes}/>))
+    let postElement = postData.map((post)=>(<Post item={post} key={post.messageId.toString()}/>))
 
     let  newPostElement =React.createRef();
 
-    let addPost =(props)=>{
+    let addingPost =()=>{
+
         let text = newPostElement.current.value;
+        postData.addPost(text)
+    }
 
-        props.addPost(text)}
 
-    return <div className={classes.style}>
+    return <div >
                 <div>
                     <div className>
                         <textarea ref={newPostElement}></textarea>
                     </div>
                     <div>
-                        <button onClick={addPost}>Add</button>
+                        <button onClick={addingPost}>Add</button>
                     </div>
                 </div>
                 <div className = {classes.post}>
