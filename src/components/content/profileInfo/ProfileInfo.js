@@ -9,6 +9,7 @@ const ProfileInfo=()=>{
             <div className={classes.description}>
                 ava+description
             </div>
+
         </div>)
 }
 

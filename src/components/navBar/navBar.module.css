@@ -1,13 +1,11 @@
 .nav{
     grid-area: n;
     background-color: lightblue;
-
+    grid-template-rows: 1fr 1fr;
 }
 
 .style a{
     color: blue;
-
-
 }
 
 
