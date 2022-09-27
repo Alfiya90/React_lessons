@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import store from "./dataBase/DateBase"
 
 export let rerenderEntireTree =(dateBase)=> {
+    console.log('rerender is working')
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(
         <React.StrictMode>

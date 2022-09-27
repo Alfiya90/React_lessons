@@ -7,7 +7,7 @@ const Post = ({item}) => {
             <img src ="https://filestore.community.support.microsoft.com/api/images/f2e55cbf-8316-4d3a-9412-ecd8194b2a72?upload=true"/>
             {item.message}
             <div>
-                <snop> likes</snop>
+                <p> likes</p>
                 {item.likes}
             </div>
         </div>)

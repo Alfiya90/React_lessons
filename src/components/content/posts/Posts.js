@@ -1,8 +1,7 @@
 import classes from './Post.module.css';
 import React from "react";
 import Post from "./Post";
-import PostsOther from "./PostsOther.module.css"
-import {addPost} from "./../../../dataBase/DateBase"
+
 
 
 let addPostActionCreater=()=>{
@@ -11,7 +10,7 @@ let addPostActionCreater=()=>{
     }
 }
 
-const Posts = ({postData, addPost, newPostChar, updateNewPostChar, dispatch}) =>{
+const Posts = ({postData,  newPostChar,  dispatch}) =>{
 
     let postElement = postData.map((post)=>(<Post item={post} key={post.messageId.toString()}/>))
 
@@ -19,8 +18,8 @@ const Posts = ({postData, addPost, newPostChar, updateNewPostChar, dispatch}) =>
 
     let addingPost =()=>{
         let text = newPostElement.current.value;
-        dispatch({type:'ADD_POST', sendMessage:text})
-        /*dispatch({type:'UPDATE_NEW_POST_CHAR', newChar:''})*/
+        dispatch({type:'ADD_POST'})
+
     }
     let onPostChange=()=>{
         let text = newPostElement.current.value;
@@ -30,7 +29,7 @@ const Posts = ({postData, addPost, newPostChar, updateNewPostChar, dispatch}) =>
 
     return <div >
                 <div>
-                    <div className>
+                    <div >
                         <textarea onChange={onPostChange} ref={newPostElement} value={newPostChar}></textarea>
                     </div>
                     <div>

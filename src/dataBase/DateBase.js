@@ -38,10 +38,10 @@ let store={
         messageId:4,
         dialogId:14
     },
-    addPost(postMessage){
+    addPost(){
         let newPost={
             id:6,
-            message: postMessage,
+            message: this._dateBase.profilePage.newPostChar,
             likes:0,
             messageId:this.Counter.messageId
         };
@@ -50,10 +50,10 @@ let store={
         this.rerenderEntireTree(this._dateBase);
     },
 
-    addMessage(sendMessage){
+    addMessage(){
         let newMessage={
             id:6,
-            message:sendMessage,
+            message:this._dateBase.messagePage.newMessageChar,
             dialogId:this.Counter.dialogId
         }
         this.Counter.dialogId+=1;
@@ -72,11 +72,11 @@ let store={
         this.rerenderEntireTree=observer;
     },
     dispatch(action){
-        debugger;
+
         if (action.type==='ADD_POST'){
             let newPost={
                 id:6,
-                message: action.postMessage,
+                message: this._dateBase.profilePage.newPostChar,
                 likes:0,
                 messageId:this.Counter.messageId
             };
@@ -95,10 +95,10 @@ let store={
         }
         else if(action.type==='UPDATE_NEW_POST_CHAR'){
             this._dateBase.profilePage.newPostChar=action.newChar;
-            this.rerenderEntireTree(this._dateBase)
+
         }else if(action.type==='UPDATE_NEW_MESSAGE_CHAR'){
             this._dateBase.messagePage.newMessageChar=action.newChar;
-            this.rerenderEntireTree(this._dateBase)}
+            }
         }
 
 }
@@ -107,75 +107,3 @@ let store={
 
 export default store;
 
-/*
- let rerenderEntireTree=()=>{
-
-}
-
-let dateBase ={
-    profilePage:{
-        postData:[
-            {id:1, message:"Немного обо мне", likes:4, messageId:1},
-            {id:3, message:"Важней всего погода в доме?", likes:8, messageId:2},
-            {id:4, message:"Вкусный завтрак", likes:5, messageId:3}
-        ]
-
-    },
-
-    messagePage:{
-        dialogData:[
-            {id:1, name:"Vladislav" },
-            {id:2, name:"Aslan" },
-            {id:3, name:"Damir"},
-            {id:4, name:"Mama" },
-            {id:5, name:"Ryzilya"}
-        ],
-        messageData:[
-            {id:1, message:"Привет!Как дела?", dialogId:11 },
-            {id:3, message:"Мам, есть что нибудь вкусненькое?", dialogId:12 },
-            {id:4, message:"Ты где?" ,dialogId:13},
-        ]
-    }
-}
-const Counter ={
-    messageId:4,
-    dialogId:14
-}
- export let addPost=(postMessage) => {
-    let newPost={
-        id:6,
-        message: postMessage,
-        likes:0,
-        messageId:Counter.messageId
-        };
-    Counter.messageId+=1;
-    dateBase.profilePage.postData.push(newPost);
-     rerenderEntireTree(dateBase);
-    }
-
-export let addMessage=(sendMessage)=>{
-    let newMessage={
-        id:6,
-        message:sendMessage,
-        dialogId:Counter.dialogId
-    }
-    Counter.dialogId+=1;
-    dateBase.messagePage.messageData.push(newMessage)
-     rerenderEntireTree(dateBase);
-}
-
-export let updateNewPostChar=(newChar)=>{
-    dateBase.profilePage.newPostChar=newChar;
-    rerenderEntireTree(dateBase)
-}
-
-export let updateNewMessageChar=(newChar)=>{
-    dateBase.messagePage.newMessageChar=newChar;
-    rerenderEntireTree(dateBase)
-}
-
-export  const subscribe=(observer)=>{
-    rerenderEntireTree=observer;
-}
-
-export default dateBase;*/

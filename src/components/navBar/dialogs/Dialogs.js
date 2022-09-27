@@ -3,16 +3,15 @@ import classes from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 import DialogItem from "./dialogItem/DialogItem";
 import Message from "./Message/Message";
-import Profile from "../../content/Profile";
-import {updateNewPostChar} from "../../../dataBase/DateBase";
 
-const Dialogs = ({dialogData, messageData, addMessage, newMessageChar, updateNewMessageChar,dispatch}) => {
+
+const Dialogs = ({dialogData, messageData,  newMessageChar, dispatch}) => {
     let  answerMessage = React.createRef();
     let addAnswer =()=>{
-        debugger;
+
        let text = answerMessage.current.value;
         dispatch({type:'ADD_MESSAGE', sendMessage:text});
-        /*dispatch({type:'UPDATE_NEW_MESSAGE_CHAR', newChar:''});*/
+
     }
 
     let dialogElements = dialogData
@@ -22,7 +21,7 @@ const Dialogs = ({dialogData, messageData, addMessage, newMessageChar, updateNew
         .map((message)=>(<Message message={message.message} key ={message.dialogId.toString()}/>));
 
     let onMessageChange =()=>{
-        debugger;
+
         let text = answerMessage.current.value;
         dispatch({type:'UPDATE_NEW_MESSAGE_CHAR', newChar:text});
     }
