@@ -13,27 +13,27 @@ let initialState = {
         newPostChar:"post"
     }
 
-let profileReducer=(state =initialState, action)=>{
+let profileReducer=(dateBase =initialState, action)=>{
     debugger;
     switch (action.type){
         case'ADD_POST':
             let newPost={
                 id:6,
-                message: state.newPostChar,
+                message: dateBase.newPostChar,
                 likes:0,
                 messageId:Counter.messageId
             };
             Counter.messageId+=1;
-            state.postData.push(newPost);
+            dateBase.postData.push(newPost);
             debugger;
-            return state;
+            return dateBase;
 
         case 'UPDATE_NEW_POST_CHAR':
-            state.newPostChar=action.newChar;
-            return state;
-        default: return state;
+            dateBase.newPostChar=action.newChar;
+            return dateBase;
+        default: return dateBase;
     }
-    return state;
+    return dateBase;
 }
 export let addPostActionCreator=()=>{
     return {

@@ -13,6 +13,7 @@ const Posts = ({postData,  newPostChar,  dispatch}) =>{
     let addingPost =()=>{
         let text = newPostElement.current.value;
         dispatch(addPostActionCreator())
+        dispatch(updateNewPostCharActionCreator(''))
 
     }
     let onPostChange=()=>{

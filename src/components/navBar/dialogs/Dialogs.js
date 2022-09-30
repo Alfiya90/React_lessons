@@ -12,7 +12,7 @@ const Dialogs = ({dialogData, messageData,  newMessageChar, dispatch}) => {
 
        let text = answerMessage.current.value;
         dispatch(addMessageActionCreator());
-
+        dispatch(updateNewMessageChar(''));
     }
 
     let dialogElements = dialogData
