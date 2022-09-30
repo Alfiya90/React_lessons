@@ -4,16 +4,8 @@ const Counter={
     dialogId:14
 }
 
-let initialState = {
-        postData:[
-            {id:1, message:"Немного обо мне", likes:4, messageId:1},
-            {id:3, message:"Важней всего погода в доме?", likes:8, messageId:2},
-            {id:4, message:"Вкусный завтрак", likes:5, messageId:3}
-        ],
-        newPostChar:"post"
-    }
 
-let profileReducer=(dateBase=initialState, action)=>{
+let profileReducer=(dateBase, action)=>{
     debugger;
     switch (action.type){
         case'ADD_POST':

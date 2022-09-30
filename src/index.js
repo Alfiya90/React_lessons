@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from "./dataBase/ReduxDataBase"
+import store from "./dataBase/DateBase"
 
 export let rerenderEntireTree =(dateBase)=> {
     ReactDOM.render(<React.StrictMode>
