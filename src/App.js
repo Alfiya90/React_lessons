@@ -17,18 +17,18 @@ import  {Route, Routes} from 'react-router';
 
 
 
-const App=({dateBase,dispatch})=> {
-
+const App=({state,dispatch})=> {
+debugger
     return    (
         <BrowserRouter>
             <div className = 'app-wrapper'>
                 <Header />
-                <NavBar dialogData={dateBase.messagePage}/>
+                <NavBar dialogData={state.messagePage}/>
                 <div className = 'app-wrapper-content'>
                     <Routes>
-                        <Route path = "/profile" element ={<Profile postData={dateBase.profilePage.postData} dispatch ={dispatch} newPostChar={dateBase.profilePage.newPostChar}/>} />
-                        <Route path = "/dialogs" element={<Dialogs dialogData={dateBase.messagePage.dialogData}
-                                                                   messageData={dateBase.messagePage.messageData}
+                        <Route path = "/profile" element ={<Profile postData={state.profilePage.postData} dispatch ={dispatch} newPostChar={state.profilePage.newPostChar}/>} />
+                        <Route path = "/dialogs" element={<Dialogs messageData={state.messagePage.messageData} dialogData={state.messagePage.dialogData}
+
                                                                    dispatch ={dispatch} />} />
                         <Route path = "/news" element ={<News/>} />
                         <Route path = "/music" element ={<Musics/>}/>

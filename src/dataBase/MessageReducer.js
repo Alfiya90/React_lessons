@@ -18,22 +18,22 @@ let initialState ={
     ],
     newMessageChar:"message"
 }
-let messageReducer =(datebase=initialState,action)=>{
+let messageReducer =(state =initialState,action)=>{
     switch (action.type){
         case 'ADD_MESSAGE':
             let newMessage={
             id:6,
-            message:datebase.newMessageChar,
+            message:state.newMessageChar,
             dialogId:Counter.dialogId
             }
             Counter.dialogId+=1;
-            datebase.messageData.push(newMessage);
-            return datebase;
+            state.messageData.push(newMessage);
+            return state;
         case 'UPDATE_NEW_MESSAGE_CHAR':
-            datebase.newMessageChar=action.newChar;
-            return datebase;
-        default: return datebase;
-    } return datebase;
+            state.newMessageChar=action.newChar;
+            return state;
+        default: return state;
+    } return state;
 }
 
 export   let addMessageActionCreator=()=>{

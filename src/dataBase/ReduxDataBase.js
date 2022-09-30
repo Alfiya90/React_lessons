@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from "redux";
+import {combineReducers, legacy_createStore} from "redux";
 import profileReducer from "./ProfileReducer";
 import messageReducer from "./MessageReducer";
 
@@ -8,7 +8,7 @@ let reducers = combineReducers({
 });
 
 
-let dateBase = createStore(reducers);
+let store = legacy_createStore(reducers);
 
 
-export default dateBase;
+export default store;

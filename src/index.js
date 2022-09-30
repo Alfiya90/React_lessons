@@ -2,11 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from "./dataBase/ReduxDataBase"
 
-export let rerenderEntireTree =(dateBase)=> {
+import store from "./dataBase/ReduxDataBase";
+import reduxDataBase from "./dataBase/ReduxDataBase";
+import dateBase from "./dataBase/ReduxDataBase";
+
+export let rerenderEntireTree =(state)=> {
+    debugger
     ReactDOM.render(<React.StrictMode>
-        <App  dateBase={dateBase} dispatch ={store.dispatch.bind(store)}/>
+        <App  state={state} dispatch ={store.dispatch.bind(store) } store ={store} />
     </React.StrictMode>,document.getElementById('root') )
    /* /!*console.log('rerender is working')
     const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,7 +21,7 @@ export let rerenderEntireTree =(dateBase)=> {
    /!* );*!/*/
 }
 
-rerenderEntireTree(store.getDataBase());
+rerenderEntireTree(store.getState());
 store.subscribe(rerenderEntireTree)
 
 // If you want to start measuring performance in your app, pass a function
