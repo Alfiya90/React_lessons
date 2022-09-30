@@ -1,14 +1,8 @@
 import classes from './Post.module.css';
 import React from "react";
 import Post from "./Post";
+import {updateNewPostCharActionCreator, addPostActionCreator} from "../../../dataBase/ProfileReducer";
 
-
-
-let addPostActionCreater=()=>{
-    return {
-        type:'ADD_POST'
-    }
-}
 
 const Posts = ({postData,  newPostChar,  dispatch}) =>{
 
@@ -18,12 +12,12 @@ const Posts = ({postData,  newPostChar,  dispatch}) =>{
 
     let addingPost =()=>{
         let text = newPostElement.current.value;
-        dispatch({type:'ADD_POST'})
+        dispatch(addPostActionCreator())
 
     }
     let onPostChange=()=>{
         let text = newPostElement.current.value;
-        dispatch({type:'UPDATE_NEW_POST_CHAR', newChar:text})
+        dispatch(updateNewPostCharActionCreator(text))
     }
 
 

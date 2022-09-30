@@ -3,6 +3,7 @@ import classes from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 import DialogItem from "./dialogItem/DialogItem";
 import Message from "./Message/Message";
+import {updateNewMessageChar, addMessageActionCreator} from "../../../dataBase/MessageReducer";
 
 
 const Dialogs = ({dialogData, messageData,  newMessageChar, dispatch}) => {
@@ -10,7 +11,7 @@ const Dialogs = ({dialogData, messageData,  newMessageChar, dispatch}) => {
     let addAnswer =()=>{
 
        let text = answerMessage.current.value;
-        dispatch({type:'ADD_MESSAGE', sendMessage:text});
+        dispatch(addMessageActionCreator());
 
     }
 
@@ -23,7 +24,7 @@ const Dialogs = ({dialogData, messageData,  newMessageChar, dispatch}) => {
     let onMessageChange =()=>{
 
         let text = answerMessage.current.value;
-        dispatch({type:'UPDATE_NEW_MESSAGE_CHAR', newChar:text});
+        dispatch(updateNewMessageChar(text));
     }
     return(
         <div className={classes.dialogs}>

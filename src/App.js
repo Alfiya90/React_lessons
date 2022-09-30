@@ -17,7 +17,7 @@ import  {Route, Routes} from 'react-router';
 
 
 
-const App=({dateBase,dispatch })=> {
+const App=({dateBase,dispatch})=> {
 
     return    (
         <BrowserRouter>
@@ -26,10 +26,10 @@ const App=({dateBase,dispatch })=> {
                 <NavBar dialogData={dateBase.messagePage}/>
                 <div className = 'app-wrapper-content'>
                     <Routes>
-                        <Route path = "/profile" element ={<Profile postData={dateBase.profilePage.postData} dispatch ={dispatch}/>} />
+                        <Route path = "/profile" element ={<Profile postData={dateBase.profilePage.postData} dispatch ={dispatch} newPostChar={dateBase.profilePage.newPostChar}/>} />
                         <Route path = "/dialogs" element={<Dialogs dialogData={dateBase.messagePage.dialogData}
                                                                    messageData={dateBase.messagePage.messageData}
-                                                                   dispatch ={dispatch}/>} />
+                                                                   dispatch ={dispatch} />} />
                         <Route path = "/news" element ={<News/>} />
                         <Route path = "/music" element ={<Musics/>}/>
                         <Route path = "/setting" element={<Setting/>} />

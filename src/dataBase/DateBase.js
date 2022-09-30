@@ -1,4 +1,6 @@
 import  React from 'react';
+import messageReducer from "./MessageReducer";
+import profileReducer from "./ProfileReducer";
 
 let store={
     _dateBase:{
@@ -72,8 +74,14 @@ let store={
         this.rerenderEntireTree=observer;
     },
     dispatch(action){
+        debugger
+        this._dateBase.messagePage=messageReducer(this._dateBase.messagePage, action);
+        this._dateBase.profilePage=profileReducer(this._dateBase.profilePage,action);
+        debugger
+        this.rerenderEntireTree(this._dateBase);
 
-        if (action.type==='ADD_POST'){
+
+        /*if (action.type==='ADD_POST'){
             let newPost={
                 id:6,
                 message: this._dateBase.profilePage.newPostChar,
@@ -84,24 +92,25 @@ let store={
             this._dateBase.profilePage.postData.push(newPost);
             this.rerenderEntireTree(this._dateBase);
         }
-        else if (action.type==='ADD_MESSAGE'){let newMessage={
+        /!*else if (action.type==='ADD_MESSAGE'){let newMessage={
             id:6,
-            message:action.sendMessage,
+            message:this._dateBase.messagePage.newMessageChar,
             dialogId:this.Counter.dialogId
             }
             this.Counter.dialogId+=1;
             this._dateBase.messagePage.messageData.push(newMessage)
             this.rerenderEntireTree(this._dateBase);
-        }
+        }*!/
         else if(action.type==='UPDATE_NEW_POST_CHAR'){
             this._dateBase.profilePage.newPostChar=action.newChar;
 
-        }else if(action.type==='UPDATE_NEW_MESSAGE_CHAR'){
+        }/!*else if(action.type==='UPDATE_NEW_MESSAGE_CHAR'){
             this._dateBase.messagePage.newMessageChar=action.newChar;
-            }
+            }*!/*/
         }
 
 }
+
 
 
 

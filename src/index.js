@@ -1,17 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from "./dataBase/DateBase"
+import store from "./dataBase/ReduxDataBase"
 
 export let rerenderEntireTree =(dateBase)=> {
-    console.log('rerender is working')
+    ReactDOM.render(<React.StrictMode>
+        <App  dateBase={dateBase} dispatch ={store.dispatch.bind(store)}/>
+    </React.StrictMode>,document.getElementById('root') )
+   /* /!*console.log('rerender is working')
     const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(
+    root.render(*!/
         <React.StrictMode>
             <App  dateBase={dateBase} dispatch ={store.dispatch.bind(store)}/>
         </React.StrictMode>
-    );
+   /!* );*!/*/
 }
 
 rerenderEntireTree(store.getDataBase());
