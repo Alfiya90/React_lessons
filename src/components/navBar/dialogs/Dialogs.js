@@ -1,18 +1,17 @@
 import React from 'react';
 import classes from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+
 import DialogItem from "./dialogItem/DialogItem";
 import Message from "./Message/Message";
 import {updateNewMessageChar, addMessageActionCreator} from "../../../dataBase/MessageReducer";
 
 
-const Dialogs = ({dialogData, messageData,  newMessageChar, dispatch}) => {
+const Dialogs = ({dialogData, messageData,  newMessageChar, updateNewMessageText,addMessage}) => {
+    debugger
     let  answerMessage = React.createRef();
     let addAnswer =()=>{
-
        let text = answerMessage.current.value;
-        dispatch(addMessageActionCreator());
-        dispatch(updateNewMessageChar(''));
+        addMessage();
     }
 
     let dialogElements = dialogData
@@ -22,10 +21,10 @@ const Dialogs = ({dialogData, messageData,  newMessageChar, dispatch}) => {
         .map((message)=>(<Message message={message.message} key ={message.dialogId.toString()}/>));
 
     let onMessageChange =()=>{
-
         let text = answerMessage.current.value;
-        dispatch(updateNewMessageChar(text));
+        updateNewMessageText(text)
     }
+
     return(
         <div className={classes.dialogs}>
             <div className={classes.dialogs}>Контакты</div>

@@ -5,10 +5,10 @@ import classes from './../Dialogs.module.css'
 
 
 
-const Message =(props)=>{
+const Message =({message})=>{
     return(
         <div>
-            {props.message}
+            {message}
         </div>
     )
 }

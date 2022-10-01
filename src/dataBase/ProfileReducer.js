@@ -1,4 +1,4 @@
-import dateBase from "./DateBase";
+import state from "./store";
 const Counter={
     messageId:4,
     dialogId:14
@@ -13,27 +13,26 @@ let initialState = {
         newPostChar:"post"
     }
 
-let profileReducer=(dateBase =initialState, action)=>{
-    debugger;
+let profileReducer=(state=initialState, action)=>{
     switch (action.type){
         case'ADD_POST':
             let newPost={
                 id:6,
-                message: dateBase.newPostChar,
+                message: state.newPostChar,
                 likes:0,
                 messageId:Counter.messageId
             };
             Counter.messageId+=1;
-            dateBase.postData.push(newPost);
+            state.postData.push(newPost);
             debugger;
-            return dateBase;
+            return state;
 
         case 'UPDATE_NEW_POST_CHAR':
-            dateBase.newPostChar=action.newChar;
-            return dateBase;
-        default: return dateBase;
+            state.newPostChar=action.newChar;
+            return state;
+        default: return state;
     }
-    return dateBase;
+    return state;
 }
 export let addPostActionCreator=()=>{
     return {

@@ -1,24 +1,23 @@
 import classes from './Post.module.css';
 import React from "react";
 import Post from "./Post";
-import {updateNewPostCharActionCreator, addPostActionCreator} from "../../../dataBase/ProfileReducer";
 
 
-const Posts = ({postData,  newPostChar,  dispatch}) =>{
 
-    let postElement = postData.map((post)=>(<Post item={post} key={post.messageId.toString()}/>))
+const Posts = ({postData, addPost, updateNewPost, newPostChar}) =>{
+debugger
+    let postElement = postData.map((post)=>(<Post message={post.message} key={post.messageId.toString()}/>));
 
     let  newPostElement =React.createRef();
 
     let addingPost =()=>{
         let text = newPostElement.current.value;
-        dispatch(addPostActionCreator())
-        dispatch(updateNewPostCharActionCreator(''))
+        addPost();
 
     }
     let onPostChange=()=>{
         let text = newPostElement.current.value;
-        dispatch(updateNewPostCharActionCreator(text))
+        updateNewPost(text)
     }
 
 

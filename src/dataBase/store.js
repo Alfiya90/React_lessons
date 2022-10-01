@@ -1,9 +1,10 @@
+/*
 import  React from 'react';
 import messageReducer from "./MessageReducer";
 import profileReducer from "./ProfileReducer";
 
 let store={
-    _dateBase:{
+    _state:{
         profilePage:{
             postData:[
                 {id:1, message:"Немного обо мне", likes:4, messageId:1},
@@ -30,8 +31,8 @@ let store={
             newMessageChar:"message"
         }
     },
-    getDataBase(){
-        return this._dateBase;
+    getState(){
+        return this._state;
     },
     rerenderEntireTree(){
     },
@@ -43,45 +44,45 @@ let store={
     addPost(){
         let newPost={
             id:6,
-            message: this._dateBase.profilePage.newPostChar,
+            message: this._state.profilePage.newPostChar,
             likes:0,
             messageId:this.Counter.messageId
         };
         this.Counter.messageId+=1;
-        this._dateBase.profilePage.postData.push(newPost);
-        this.rerenderEntireTree(this._dateBase);
+        this._state.profilePage.postData.push(newPost);
+        this.rerenderEntireTree(this._state);
     },
 
     addMessage(){
         let newMessage={
             id:6,
-            message:this._dateBase.messagePage.newMessageChar,
+            message:this._state.messagePage.newMessageChar,
             dialogId:this.Counter.dialogId
         }
         this.Counter.dialogId+=1;
-        this._dateBase.messagePage.messageData.push(newMessage)
+        this._state.messagePage.messageData.push(newMessage)
         this.rerenderEntireTree(this._dateBase);
     },
     updateNewPostChar(newChar){
-        this._dateBase.profilePage.newPostChar=newChar;
+        this._state.profilePage.newPostChar=newChar;
         this.rerenderEntireTree(this._dateBase)
     },
     updateNewMessageChar(newChar){
-        this._dateBase.messagePage.newMessageChar=newChar;
-        this.rerenderEntireTree(this._dateBase)
+        this._state.messagePage.newMessageChar=newChar;
+        this.rerenderEntireTree(this._state)
     },
     subscribe(observer){
         this.rerenderEntireTree=observer;
     },
     dispatch(action){
         debugger
-        this._dateBase.messagePage=messageReducer(this._dateBase.messagePage, action);
-        this._dateBase.profilePage=profileReducer(this._dateBase.profilePage,action);
+        this._state.messagePage=messageReducer(this._state.messagePage, action);
+        this._state.profilePage=profileReducer(this._state.profilePage,action);
         debugger
-        this.rerenderEntireTree(this._dateBase);
+        this.rerenderEntireTree(this._state);
 
 
-        /*if (action.type==='ADD_POST'){
+        /!*if (action.type==='ADD_POST'){
             let newPost={
                 id:6,
                 message: this._dateBase.profilePage.newPostChar,
@@ -106,7 +107,7 @@ let store={
 
         }/!*else if(action.type==='UPDATE_NEW_MESSAGE_CHAR'){
             this._dateBase.messagePage.newMessageChar=action.newChar;
-            }*!/*/
+            }*!/!*!/
         }
 
 }
@@ -116,3 +117,4 @@ let store={
 
 export default store;
 
+*/
