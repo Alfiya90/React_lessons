@@ -10,7 +10,7 @@ import Musics from './components/navBar/Music/Musics';
 import NavBar from './components/navBar/NavBar';
 import {BrowserRouter} from 'react-router-dom';
 import  {Route, Routes} from 'react-router';
-import DialogsContainer from "./components/navBar/dialogs/DailogsContainer";
+import  {SuperDialogsContainer} from "./components/navBar/dialogs/DailogsContainer";
 
 
 
@@ -28,7 +28,7 @@ const App=({state,dispatch})=> {
                 <div className = 'app-wrapper-content'>
                     <Routes>
                         <Route path = "/profile" element ={<Profile/>} />
-                        <Route path = "/dialogs" element={<DialogsContainer/>} />
+                        <Route path = "/dialogs" element={<SuperDialogsContainer/>} />
                         <Route path = "/news" element ={<News/>} />
                         <Route path = "/music" element ={<Musics/>}/>
                         <Route path = "/setting" element={<Setting/>} />
