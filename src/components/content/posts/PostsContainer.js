@@ -50,4 +50,4 @@ let mapDispatchToProps=(dispatch)=>{
 
 export let SuperPostsContainer= connect(mapStateToProps, mapDispatchToProps)(Posts);
 
-/*export default PostsContainer;*/
+

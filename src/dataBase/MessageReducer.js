@@ -20,18 +20,22 @@ let initialState ={
 }
 let messageReducer =(state=initialState,action)=>{
     switch (action.type){
-        case 'ADD_MESSAGE':
+        case 'ADD_MESSAGE':{
             let newMessage={
             id:6,
             message:state.newMessageChar,
             dialogId:Counter.dialogId
             }
             Counter.dialogId+=1;
-            state.messageData.push(newMessage);
-            return state;
+            let copyState = {...state}
+            copyState.messageData=[...state.messageData]
+            copyState.messageData.push(newMessage);
+            return copyState;
+        }
         case 'UPDATE_NEW_MESSAGE_CHAR':
-            state.newMessageChar=action.newChar;
-            return state;
+            let copyState = {...state}
+            copyState.newMessageChar=action.newChar;
+            return copyState;
         default: return state;
     } return state;
 }
