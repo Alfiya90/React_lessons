@@ -27,9 +27,8 @@ const App=({state,dispatch})=> {
                 <NavBar dialogData={state.messagePage}/>
                 <div className = 'app-wrapper-content'>
                     <Routes>
-                        <Route path = "/profile" element ={<Profile postData={state.profilePage.postData} dispatch ={dispatch} newPostChar={state.profilePage.newPostChar}/>} />
-                        <Route path = "/dialogs" element={<DialogsContainer messageData={state.messagePage.messageData} dialogData={state.messagePage.dialogData}
-                                                                   dispatch ={dispatch} newMessageChar={state.messagePage.newMessageChar}/>} />
+                        <Route path = "/profile" element ={<Profile/>} />
+                        <Route path = "/dialogs" element={<DialogsContainer/>} />
                         <Route path = "/news" element ={<News/>} />
                         <Route path = "/music" element ={<Musics/>}/>
                         <Route path = "/setting" element={<Setting/>} />

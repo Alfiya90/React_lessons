@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./dataBase/storeRedux";
+import StoreContext from "./StoreContext";
 
 export let rerenderEntireTree =(state)=> {
     debugger
     ReactDOM.render(<React.StrictMode>
-        <App  state={state} dispatch ={store.dispatch.bind(store) } store ={store} />
-    </React.StrictMode>,document.getElementById('root') )
+                        <StoreContext.Provider value={store}>
+                             <App state={state}/>
+                        </StoreContext.Provider>
+                    </React.StrictMode>, document.getElementById('root'))
    /* /!*console.log('rerender is working')
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(*!/

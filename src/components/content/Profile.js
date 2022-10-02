@@ -6,12 +6,12 @@ import PostsContainer from "./posts/PostsContainer";
 
 
 
-const Profile =({postData, newPostChar, dispatch}) => {
+const Profile =() => {
     debugger
     return(
         <div>
             <ProfileInfo/>
-            <PostsContainer postData={postData} dispatch ={dispatch} newPostChar={newPostChar}/>
+            <PostsContainer />
         </div>)
 }
 
