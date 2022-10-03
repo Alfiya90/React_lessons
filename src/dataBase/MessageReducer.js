@@ -1,3 +1,5 @@
+import message from "../components/navBar/dialogs/Message/Message";
+
 const Counter ={
     messageId:4,
     dialogId:14
