@@ -5,7 +5,6 @@ import Post from "./Post";
 
 
 const Posts = ({postData, addPost, updateNewPost, newPostChar}) =>{
-debugger
     let postElement = postData.map((post)=>(<Post message={post.message} key={post.messageId.toString()}/>));
 
     let  newPostElement =React.createRef();

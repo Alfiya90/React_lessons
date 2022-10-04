@@ -11,7 +11,7 @@ import NavBar from './components/navBar/NavBar';
 import {BrowserRouter} from 'react-router-dom';
 import  {Route, Routes} from 'react-router';
 import  {SuperDialogsContainer} from "./components/navBar/dialogs/DailogsContainer";
-
+import UsersContainer from './components/navBar/friends/UsersContainer'
 
 
 
@@ -32,6 +32,7 @@ const App=({state,dispatch})=> {
                         <Route path = "/news" element ={<News/>} />
                         <Route path = "/music" element ={<Musics/>}/>
                         <Route path = "/setting" element={<Setting/>} />
+                        <Route path = "/users" element ={<UsersContainer/>} />
                     </Routes>
                 </div>
             </div>

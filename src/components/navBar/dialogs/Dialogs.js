@@ -7,7 +7,6 @@ import {updateNewMessageChar, addMessageActionCreator} from "../../../dataBase/M
 
 
 const Dialogs = ({dialogData, messageData,  newMessageChar, updateNewMessageText,addMessage}) => {
-    debugger
     let  answerMessage = React.createRef();
     let addAnswer =()=>{
        let text = answerMessage.current.value;
