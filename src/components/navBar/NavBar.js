@@ -23,6 +23,11 @@ const NavBar = (props) =>{
         </div>
         <div className={classes.style}>
             <a onClick={() => {
+                navigate("/users")
+            }}>Users</a>
+        </div>
+        <div className={classes.style}>
+            <a onClick={() => {
                 navigate("/news")
             }}>News</a>
         </div>
@@ -39,7 +44,6 @@ const NavBar = (props) =>{
         </div>
 
         <div>
-
             {dialogElements[0]}
             {dialogElements[1]}
             {dialogElements[2]}
