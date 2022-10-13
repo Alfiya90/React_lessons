@@ -23,7 +23,7 @@ const App=({state,dispatch})=> {
     return    (
         <BrowserRouter>
             <div className = 'app-wrapper'>
-                <Header />
+                <Header/>
                 <NavBar dialogData={state.messagePage}/>
                 <div className = 'app-wrapper-content'>
                     <Routes>
