@@ -1,7 +1,7 @@
 .description{
     padding: 15px;
 }
-.image img{
+.image{
     width: 100%;
-    min-height: 1vh
+    height: 60px;
 }

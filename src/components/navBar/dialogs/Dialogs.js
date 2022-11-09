@@ -1,9 +1,8 @@
 import React from 'react';
 import classes from './Dialogs.module.css'
+import DialogItem from './dialogItem/DialogItem';
+import Message from './Message/Message';
 
-import DialogItem from "./dialogItem/DialogItem";
-import Message from "./Message/Message";
-import {updateNewMessageChar, addMessageActionCreator} from "../../../dataBase/MessageReducer";
 
 
 const Dialogs = ({dialogData, messageData,  newMessageChar, updateNewMessageText,addMessage}) => {

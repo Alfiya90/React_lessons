@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from "react-redux";
 import {
-    setCurrentPageAC,
+    setCurrentPageAC, setLoadingAC,
     setTotalUsersCountAC,
     setUsersAC,
     subscribeAC,
@@ -13,7 +13,8 @@ let mapStateToProps=(state)=>{
     return{users: state.usersPage.users,
            totalUsersCount: state.usersPage.totalUsersCount,
            pageSize: state.usersPage.pageSize,
-           currentPage: state.usersPage.currentPage
+           currentPage: state.usersPage.currentPage,
+           isLoading: state.usersPage.isLoading
     }
 }
 let mapDispatchToProps=(dispatch)=>{
@@ -22,11 +23,11 @@ let mapDispatchToProps=(dispatch)=>{
         unsubscribe:(userId)=>{dispatch(unSubscribeAC(userId))},
         setUsers:(users)=>{dispatch(setUsersAC(users))},
         setCurrentPage: (pageNumber)=>{dispatch(setCurrentPageAC(pageNumber))},
-        setTotalUsersCount:(totalUsersCount)=>{dispatch(setTotalUsersCountAC(totalUsersCount))}
+        setTotalUsersCount:(totalUsersCount)=>{dispatch(setTotalUsersCountAC(totalUsersCount))},
+        setIsLoading: (isLoading) =>{dispatch(setLoadingAC(isLoading))}
     }
 
 }
-debugger;
 let UsersContainer =connect(mapStateToProps, mapDispatchToProps)(UsersC);
 
 export default UsersContainer;

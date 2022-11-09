@@ -3,11 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./dataBase/storeRedux";
-import StoreContext from "./StoreContext";
 import {Provider} from "react-redux";
 
 export let rerenderEntireTree =(state)=> {
-    debugger
     ReactDOM.render(<React.StrictMode>
                         <Provider store={store}>
                              <App state={state}/>

@@ -3,18 +3,17 @@ const UNSUBSCRIBE='UNSUBSCRIBE'
 const SET_USERS ='SET_USERS'
 const SET_PAGE='SET_PAGE'
 const SET_TOTAL_USERS_COUNT='SET_TOTAL_USERS_COUNT'
+const SET_IS_LOADING ='SET_IS_LOADING'
 
 let initialState ={
-    users:[
-    ],
+    users:[],
     totalUsersCount: 0,
-    pageSize: 3,
-    currentPage:5
-
+    pageSize: 7,
+    currentPage:5,
+    isLoading: false,
 }
 
 let userReducer =(state=initialState, action)=>{
-    debugger
     switch(action.type){
         case SUBSCRIBE:{
             return {...state,
@@ -47,6 +46,12 @@ let userReducer =(state=initialState, action)=>{
         case    SET_TOTAL_USERS_COUNT: {
             return {...state, totalUsersCount: action.totalUsersCount}
         }
+        case    SET_TOTAL_USERS_COUNT: {
+            return {...state, totalUsersCount: action.totalUsersCount}
+        }
+        case    SET_IS_LOADING: {
+            return {...state, isLoading: action.isLoading}
+        }
         }
 }
 
@@ -69,4 +74,8 @@ export  const setCurrentPageAC=(currentPage)=>{
 export const setTotalUsersCountAC=(totalUsersCount)=>{
     return{type:SET_TOTAL_USERS_COUNT, totalUsersCount}
 }
+export const setLoadingAC = (isLoading) => {
+    return{type:SET_IS_LOADING, isLoading}
+}
+
 export default userReducer;

@@ -1,4 +1,4 @@
-import state from "./store";
+
 const Counter={
     messageId:4,
     dialogId:14
@@ -10,7 +10,8 @@ let initialState = {
             {id:3, message:"Важней всего погода в доме?", likes:8, messageId:2},
             {id:4, message:"Вкусный завтрак", likes:5, messageId:3}
         ],
-        newPostChar:"post"
+        newPostChar:"post",
+        profile: null
     }
 
 let profileReducer=(state=initialState, action)=>{
@@ -30,11 +31,18 @@ let profileReducer=(state=initialState, action)=>{
             debugger;
             return copyState;
         }
-        case 'UPDATE_NEW_POST_CHAR':
+        case 'UPDATE_NEW_POST_CHAR':{
             state.newPostChar=action.newChar;
             let copyState={...state}
             return copyState;
-        default: return state;
+        }
+        case 'SET_USER_PROFILE':{
+            return {
+            ...state, profile: action.profile
+            }
+        }
+
+            default: return state;
     }
     return state;
 }
@@ -47,6 +55,13 @@ export let updateNewPostCharActionCreator=(text)=>{
     return{
         type:'UPDATE_NEW_POST_CHAR',
         newChar:text
+    }
+}
+export let setUserProfile = (profile) => {
+    return {
+        type: 'SET_USER_PROFILE',
+        profile
+
     }
 }
 export default profileReducer;
