@@ -1,27 +1,17 @@
-import React from 'react'
-import axios from "axios";
+import React from 'react';
 import Users from "./Users";
 import {Preloader} from "../../common/Preloader";
+
+
 
 class UsersC extends React.Component{
 
         componentDidMount() {
-            this.props.setIsLoading(true)
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-                {withCredentials: true}).then(response=> {
-            this.props.setUsers(response.data.items);
-            this.props.setTotalUsersCount(response.data.totalCount);
-            this.props.setIsLoading(false)
-            })
+            this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
         }
        onChangePage=(pageNumber)=>{
-           this.props.setIsLoading(true)
-            this.props.setCurrentPage(pageNumber);
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response=>
-            {
-                this.props.setUsers(response.data.items)
-                this.props.setIsLoading(false)
-            })
+            this.props.setCurrentPageAC(pageNumber)
+           this.props.getUsersThunk(pageNumber, this.props.pageSize)
         }
 
     render()  {
@@ -31,9 +21,13 @@ class UsersC extends React.Component{
                     <Users totalUsersCount = {this.props.totalUsersCount}
                            pageSize = {this.props.pageSize}
                            onChangePage ={this.onChangePage}
-                           subscribe = {this.props.subscribe}
-                           unsubscribe = {this.props.unsubscribe}
+
                            users = {this.props.users}
+                           isDisabling = {this.props.isDisabling}
+                           setDisabling = {this.props.setDisabling}
+                           userDeleteThusk = {this.props.userDeleteThusk}
+                           onUserSuscribeThusk = {this.props.onUserSuscribeThusk}
+                           setCurrentPageAC = {this.props.setCurrentPageAC}
                 />}
                 </>
     }

@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 import axios from "axios";
 import Profile from "../Profile";
-import {setUserProfile} from "../../../dataBase/ProfileReducer";
+import {getUser, setUserProfile} from "../../../dataBase/ProfileReducer";
 import {connect} from "react-redux";
 import {useParams} from "react-router";
+import {api} from "../../../api";
 
 
 const SuperProfileContainer = (props) => {
@@ -14,13 +15,14 @@ const SuperProfileContainer = (props) => {
     }, []);
 
     const loadUser = () => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
-            props.setUserProfile(response.data);
-        })
+        props.getUser(userId)
+        /*api.getUserOne(userId).then(data => {
+            props.setUserProfile(data);
+        })*/
     }
     return (
         <div>
-            <Profile {...props} profile={props.profile}/>
+            <Profile {...props} profile = {props.profile}/>
         </div>)
 
 }
@@ -30,21 +32,4 @@ let mapStateToProps = (state) => ({
 
 })
 
-
-/*function withRouter(ProfileContainer) {
-    function ComponentWithRouterProp(props) {
-        let location = useLocation();
-        let navigate = useNavigate();
-                let params = useParams();
-        return (
-            <ProfileContainer
-                {...props}
-                router={{ location, navigate, params }}
-            />
-        );
-    }
-
-    return ComponentWithRouterProp;
-}*/
-
-export default connect(mapStateToProps, {setUserProfile})(SuperProfileContainer);
+export default connect(mapStateToProps, {setUserProfile,getUser})(SuperProfileContainer);

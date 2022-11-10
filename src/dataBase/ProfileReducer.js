@@ -1,3 +1,4 @@
+import {api} from "../api";
 
 const Counter={
     messageId:4,
@@ -64,4 +65,12 @@ export let setUserProfile = (profile) => {
 
     }
 }
+export const getUser = (userId) =>{
+    return (dispatch) =>{
+        api.getUserOne(userId).then(data => {
+            dispatch(setUserProfile(data));
+        })
+    }
+}
+
 export default profileReducer;

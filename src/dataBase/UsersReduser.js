@@ -1,9 +1,13 @@
+import {api} from "../api";
+import dialogs from "../components/navBar/dialogs/Dialogs";
+
 const SUBSCRIBE='SUBSCRIBE'
 const UNSUBSCRIBE='UNSUBSCRIBE'
 const SET_USERS ='SET_USERS'
 const SET_PAGE='SET_PAGE'
 const SET_TOTAL_USERS_COUNT='SET_TOTAL_USERS_COUNT'
 const SET_IS_LOADING ='SET_IS_LOADING'
+const SET_IS_DISABLE = 'SET_IS_DISABLE'
 
 let initialState ={
     users:[],
@@ -11,6 +15,7 @@ let initialState ={
     pageSize: 7,
     currentPage:5,
     isLoading: false,
+    isDisabling: []
 }
 
 let userReducer =(state=initialState, action)=>{
@@ -52,30 +57,76 @@ let userReducer =(state=initialState, action)=>{
         case    SET_IS_LOADING: {
             return {...state, isLoading: action.isLoading}
         }
+        case SET_IS_DISABLE: {
+            return {... state,
+                isDisabling: action.isDisabling ? [...state.isDisabling, action.userId]:
+                    state.isDisabling.filter(id => id !== action.userId)
+            }
+        }
         }
 }
 
 
 
 export const subscribeAC=(userId)=>{
-    return{type:SUBSCRIBE, userId}
+    return {type:SUBSCRIBE, userId}
 }
 
 export const unSubscribeAC=(userId)=>{
-    return{type:UNSUBSCRIBE, userId}
+    return {type:UNSUBSCRIBE, userId}
 }
 
 export const setUsersAC =(users)=>{
     return {type: SET_USERS,users}
 }
-export  const setCurrentPageAC=(currentPage)=>{
-    return{type:SET_PAGE, currentPage }
+export  const setCurrentPageAC=
+    (currentPage)=>{
+    return {type:SET_PAGE, currentPage }
 }
 export const setTotalUsersCountAC=(totalUsersCount)=>{
-    return{type:SET_TOTAL_USERS_COUNT, totalUsersCount}
+    return {type:SET_TOTAL_USERS_COUNT, totalUsersCount}
 }
 export const setLoadingAC = (isLoading) => {
-    return{type:SET_IS_LOADING, isLoading}
+    return {type:SET_IS_LOADING, isLoading}
 }
+export const setDisabling = (isDisabling, userId) => {
+    return {type: SET_IS_DISABLE, isDisabling, userId}
+}
+export const getUsersThunk = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(setLoadingAC(true));
+        api.getUsers(currentPage, pageSize ).then(data => {
+            dispatch(setUsersAC(data.items));
+            dispatch(setTotalUsersCountAC(data.totalCount));
+            dispatch(setLoadingAC(false));
+        })
+    }}
+export const userDeleteThusk =(userId) => {
+    return (dispatch) => {
+        dispatch(setDisabling(true, userId));
+        api.userDelete(userId)
+            .then((data) => {
+                if(data.resultCode == 0){
+                    dispatch(unSubscribeAC(userId))
+                }
+                dispatch(setDisabling(false, userId));
+            })
+}
+
+}
+
+export  const onUserSuscribeThusk = (userId) => {
+    return (dispatch) => {
+        dispatch(setDisabling(true, userId));
+        api.onUserSuscribe(userId).then((data) => {
+            if (data.resultCode == 0) {
+                dispatch(subscribeAC(userId))
+            }
+            dispatch(setDisabling(false, userId));
+        })
+    }
+}
+
+
 
 export default userReducer;
