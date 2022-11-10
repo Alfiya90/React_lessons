@@ -11,6 +11,7 @@ import  {SuperDialogsContainer} from "./components/navBar/dialogs/DailogsContain
 import UsersContainer from './components/navBar/friends/UsersContainer'
 import SuperProfileContainer from "./components/content/posts/SuperProfileContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
+import {Login} from "./components/login/Login";
 
 
 
@@ -33,6 +34,7 @@ const App=({state})=> {
                         <Route path = "/music" element ={<Musics/>}/>
                         <Route path = "/setting" element={<Setting/>} />
                         <Route path = "/users" element ={<UsersContainer/>} />
+                        <Route path = "/login" element ={<Login/>} />
                     </Routes>
                 </div>
             </div>

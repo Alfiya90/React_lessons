@@ -13,7 +13,7 @@ const NavBar = (props) =>{
     return <nav className = {classes.nav}>
         <div className = {classes.style}>
             < a onClick={() => {
-                navigate("/profile/2")
+                navigate("/profile/26635")
             }}>Profile</a>
         </div>
         <div className={classes.style}>

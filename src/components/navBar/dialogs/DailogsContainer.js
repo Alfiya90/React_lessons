@@ -1,13 +1,11 @@
 import React from 'react';
-import DialogItem from "./dialogItem/DialogItem";
-import Message from "./Message/Message";
 import {updateNewMessageChar, addMessageActionCreator} from "../../../dataBase/MessageReducer";
 import Dialogs from "./Dialogs";
 import StoreContext from "../../../StoreContext";
 import {connect} from "react-redux";
 
 
-const DialogsContainer = ({dialogData, messageData,  newMessageChar, dispatch}) => {
+const DialogsContainer = () => {
     return (
         <StoreContext.Consumer>
             { (store)=>{
@@ -25,6 +23,7 @@ const DialogsContainer = ({dialogData, messageData,  newMessageChar, dispatch}) 
                         newMessageChar={store.getState().messagePage.newMessageChar}
                         dialogData={store.getState().messagePage.dialogData}
                         messageData={store.getState().messagePage.messageData}
+                        isAuth = {store.getState().auth.isAuth}
                     />)
             }}
         </StoreContext.Consumer>
@@ -35,7 +34,8 @@ let mapStateProps=(state)=>{
     return{
         newMessageChar: state.messagePage.newMessageChar,
         dialogData: state.messagePage.dialogData,
-        messageData: state.messagePage.messageData
+        messageData: state.messagePage.messageData,
+        isAuth: state.auth.isAuth
     }
 }
 let mapDispatchToProps=(dispatch)=>{
