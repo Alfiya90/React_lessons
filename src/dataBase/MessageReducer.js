@@ -25,7 +25,7 @@ let messageReducer =(state=initialState,action)=>{
         case 'ADD_MESSAGE':{
             let newMessage={
             id:6,
-            message:state.newMessageChar,
+            message:action.newMessageBody,
             dialogId:Counter.dialogId
             }
             Counter.dialogId+=1;
@@ -42,9 +42,10 @@ let messageReducer =(state=initialState,action)=>{
     } return state;
 }
 
-export   let addMessageActionCreator=()=>{
+export   let addMessageActionCreator=(newMessageBody)=>{
     return{
-        type:'ADD_MESSAGE'
+        type:'ADD_MESSAGE',
+        newMessageBody
     }
 }
 

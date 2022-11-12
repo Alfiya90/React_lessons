@@ -3,14 +3,11 @@ import classes from './Dialogs.module.css'
 import DialogItem from './dialogItem/DialogItem';
 import Message from './Message/Message';
 import {Navigate} from "react-router";
+import { ReduxDialogForm} from "./Message/DialogFormContainer";
 
 
-const Dialogs = ({dialogData, messageData,  newMessageChar, updateNewMessageText,addMessage, isAuth}) => {
-    let  answerMessage = React.createRef();
-    let addAnswer =()=>{
-       let text = answerMessage.current.value;
-        addMessage();
-    }
+const Dialogs = ({dialogData, messageData,addMessage, isAuth}) => {
+    debugger;
 
     let dialogElements = dialogData
         .map((dialog) => (<DialogItem name={dialog.name} id={dialog.id} key ={dialog.id.toString()}/>));
@@ -18,13 +15,12 @@ const Dialogs = ({dialogData, messageData,  newMessageChar, updateNewMessageText
     let messageElements = messageData
         .map((message) => (<Message message={message.message} key ={message.dialogId.toString()}/>));
 
-    let onMessageChange = () => {
-        let text = answerMessage.current.value;
-        updateNewMessageText(text)
-    }
 
     if(!isAuth){
         return <Navigate to = {'/login'}/>
+    }
+    let addNewMessage = (values) => {
+        addMessage(values.newMessageBody)
     }
 
     return (
@@ -38,12 +34,10 @@ const Dialogs = ({dialogData, messageData,  newMessageChar, updateNewMessageText
             <div className={classes.message}>
                 {messageElements}
                 <div>
-                    <textarea onChange={onMessageChange} ref = {answerMessage} value={newMessageChar}></textarea>
-                    <div>
-                        <button onClick= {addAnswer}> Отправить</button>
-                    </div>
+                    <ReduxDialogForm onSubmit = {addNewMessage} />
                 </div>
             </div>
+
 
         </div>
     )

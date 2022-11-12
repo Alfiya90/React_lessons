@@ -22,7 +22,7 @@ let profileReducer = (state = initialState, action) => {
 
             let newPost = {
                 id: 6,
-                message: state.newPostChar,
+                message: action.addPostBody,
                 likes: 0,
                 messageId: Counter.messageId
             };
@@ -30,7 +30,6 @@ let profileReducer = (state = initialState, action) => {
             copyState.postData = [...state.postData]
             Counter.messageId += 1;
             copyState.postData.push(newPost);
-            debugger;
             return copyState;
         }
         case 'UPDATE_NEW_POST_CHAR': {
@@ -54,9 +53,10 @@ let profileReducer = (state = initialState, action) => {
     }
     return state;
 }
-export let addPostActionCreator = () => {
+export let addPostActionCreator = (addPostBody) => {
     return {
-        type: 'ADD_POST'
+        type: 'ADD_POST',
+        addPostBody
     }
 }
 export let updateNewPostCharActionCreator = (text) => {

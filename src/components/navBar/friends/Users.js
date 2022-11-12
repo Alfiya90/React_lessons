@@ -36,7 +36,7 @@ let Users = (props) => {
 
                 <div>
                     {user.subscription ? <button disabled = {props.isDisabling.some(id => id === user.id)} onClick={() => {
-                        props.userDeleteThusk(user.id)
+                        props.userDeleteThunk(user.id)
                        /* props.setDisabling(true, user.id);*/
 
                         /*api.userDelete(user.id)
@@ -49,7 +49,7 @@ let Users = (props) => {
 
                         }}>Unsubscribe</button> :
                         <button disabled = {props.isDisabling.some(id => id === user.id)} onClick={() => {
-                            props.onUserSubscribeThusk(user.id)
+                            props.onUserSubscribeThunk(user.id)
                         /*    props.setDisabling(true, user.id);
                             api.onUserSuscribe(user.id).then((data) => {
                                     if(data.resultCode == 0){

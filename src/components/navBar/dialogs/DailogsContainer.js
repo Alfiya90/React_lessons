@@ -6,11 +6,12 @@ import {connect} from "react-redux";
 
 
 const DialogsContainer = () => {
+    debugger
     return (
         <StoreContext.Consumer>
             { (store)=>{
                 let addAnswer =()=>{
-                    store.dispatch(addMessageActionCreator());
+                    store.dispatch(addMessageActionCreator(store.getState().newMessageBody));
                     store.dispatch(updateNewMessageChar(''));
                 }
 
@@ -20,7 +21,6 @@ const DialogsContainer = () => {
                 return(<Dialogs
                         updateNewMessageText={onMessageChange}
                         addMessage ={addAnswer}
-                        newMessageChar={store.getState().messagePage.newMessageChar}
                         dialogData={store.getState().messagePage.dialogData}
                         messageData={store.getState().messagePage.messageData}
                         isAuth = {store.getState().auth.isAuth}
@@ -35,7 +35,8 @@ let mapStateProps=(state)=>{
         newMessageChar: state.messagePage.newMessageChar,
         dialogData: state.messagePage.dialogData,
         messageData: state.messagePage.messageData,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        newMessageBody: state.form.newMessageBody
     }
 }
 let mapDispatchToProps=(dispatch)=>{
@@ -43,8 +44,8 @@ let mapDispatchToProps=(dispatch)=>{
         updateNewMessageText:(text)=>{
             dispatch(updateNewMessageChar(text));
         },
-        addMessage:()=>{
-            dispatch(addMessageActionCreator());
+        addMessage:(newMessageBody)=>{
+            dispatch(addMessageActionCreator(newMessageBody));
             dispatch(updateNewMessageChar(''));
         }
     }

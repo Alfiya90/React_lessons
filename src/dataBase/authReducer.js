@@ -1,4 +1,5 @@
 import {api} from "../api";
+import {stopSubmit} from "redux-form";
 
 const SET_AUTH_PARAM = 'SET_AUTH_PARAM';
 
@@ -15,7 +16,6 @@ let authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.data,
-                isAuth: true
             }
         default:
             return state;
@@ -23,20 +23,49 @@ let authReducer = (state = initialState, action) => {
     return state;
 }
 
-export const setAuthParam = ({userId, email, login}) => {
+export const setAuthParam = ({userId, login, email, isAuth = false}) => {
+    debugger
     return {
         type: SET_AUTH_PARAM,
-        data: {userId, email, login}
+        data: {userId, login, email, isAuth}
     }
 }
 
 export const isAuthing = () => {
-    debugger
+    debugger;
     return (dispatch) => {
         api.isAuthMe().then(data => {
             if (data.resultCode === 0) {
                 let {id, login, email} = data.data
-                dispatch(setAuthParam({id, login, email}));
+                dispatch(setAuthParam({id, login, email, isAuth: true}));
+            }
+        })
+    }
+}
+
+export const login = (email, password, rememberMe) => {
+debugger
+    return (dispatch) => {
+        api.login(email, password, rememberMe)
+            .then(response => {
+                console.log(response)
+                if  (response.data.resultCode === 0){
+                    dispatch(isAuthing);
+                } else{
+                    console.log(response)
+                    let errorMessage = response.data.messages.length > 0 ? response.data.messages[0] : "Error"
+                    dispatch(stopSubmit('login', {_error: errorMessage }))
+                }
+
+            } )
+    }}
+
+export const logout = () => {
+    debugger;
+    return (dispatch) => {
+        api.logout().then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setAuthParam( null, null, null, false));
             }
         })
     }

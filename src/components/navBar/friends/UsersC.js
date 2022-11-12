@@ -25,8 +25,8 @@ class UsersC extends React.Component{
                            users = {this.props.users}
                            isDisabling = {this.props.isDisabling}
                            setDisabling = {this.props.setDisabling}
-                           userDeleteThusk = {this.props.userDeleteThusk}
-                           onUserSubscribeThusk = {this.props.onUserSubscribeThusk}
+                           userDeleteThunk = {this.props.userDeleteThunk}
+                           onUserSubscribeThunk = {this.props.onUserSubscribeThunk}
                            setCurrentPageAC = {this.props.setCurrentPageAC}
                 />}
                 </>

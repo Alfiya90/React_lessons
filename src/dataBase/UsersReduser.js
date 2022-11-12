@@ -101,7 +101,7 @@ export const getUsersThunk = (currentPage, pageSize) => {
     }}
 
 
-export const userDeleteThusk =(userId) => {
+export const userDeleteThunk =(userId) => {
     return (dispatch) => {
         dispatch(setDisabling(true, userId));
         api.userDelete(userId)
@@ -115,7 +115,7 @@ export const userDeleteThusk =(userId) => {
 
 }
 
-export  const onUserSubscribeThusk = (userId) => {
+export  const onUserSubscribeThunk = (userId) => {
     return (dispatch) => {
         dispatch(setDisabling(true, userId));
         api.onUserSubscribe(userId).then((data) => {

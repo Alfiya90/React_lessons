@@ -2,7 +2,7 @@ import React from 'react';
 import './Header.css'
 import axios from 'axios';
 import Header from "./Header";
-import {isAuthing, setAuthParam} from "../../dataBase/authReducer";
+import {isAuthing, logout, setAuthParam} from "../../dataBase/authReducer";
 import {connect} from "react-redux";
 import {api} from "../../api";
 
@@ -23,8 +23,9 @@ class HeaderContainer extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => ({
+let mapStateToProps = (state) => {
+    return {
     isAuth: state.auth.isAuth,
     login: state.auth.login
-}) ;
-export default connect(mapStateToProps, {setAuthParam, isAuthing})(HeaderContainer) ;
+}} ;
+export default connect(mapStateToProps, {setAuthParam, isAuthing, logout})(HeaderContainer) ;

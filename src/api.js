@@ -2,10 +2,10 @@ import axios from "axios";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    headers:{
+    headers: {
         'API-KEY': '0418e6f8-3a33-4887-983b-7935ce803114'
     },
-    withCredentials:true
+    withCredentials: true
 })
 
 export const api = {
@@ -56,7 +56,20 @@ export const api = {
             .then(response => {
                 return response.data
             })
+    },
+    login(email, password, rememberMe) {
+        return instance.post('auth/login', {email, password, rememberMe})
+            .then(response => {
+                return response
+            })
+    },
+    logout() {
+        return instance.delete('auth/login',)
+            .then(response => {
+                return response.data
+            })
     }
+
 
 }
 

@@ -1,10 +1,12 @@
 import React from 'react'
 import {connect} from "react-redux";
 import {
-    getUsersThunk,  onUserSubscribeThusk, setCurrentPageAC,
+    getUsersThunk,
+    onUserSubscribeThunk,
+    setCurrentPageAC,
     setDisabling,
     subscribeAC,
-    unSubscribeAC, userDeleteThusk
+    unSubscribeAC, userDeleteThunk
 } from "../../../dataBase/UsersReduser";
 import UsersC from "./UsersC";
 
@@ -25,8 +27,8 @@ let mapDispatchToProps=(dispatch)=>{
         unsubscribe:(userId)=>{dispatch(unSubscribeAC(userId))},
         setDisabling: (isDisabling, userId) => {dispatch( setDisabling(isDisabling, userId))},
         getUsersThunk: (currentPage, pageSize) => {dispatch(getUsersThunk(currentPage, pageSize))},
-        userDeleteThusk: (userId) => {dispatch(userDeleteThusk(userId))},
-        onUserSubscribeThusk: (userId) => {dispatch(onUserSubscribeThusk(userId))},
+        userDeleteThunk: (userId) => {dispatch(userDeleteThunk(userId))},
+        onUserSubscribeThunk: (userId) => {dispatch(onUserSubscribeThunk(userId))},
         setCurrentPageAC: (currentPage) => {dispatch(setCurrentPageAC(currentPage))}
     }
 }
