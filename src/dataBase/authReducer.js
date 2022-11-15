@@ -24,35 +24,28 @@ let authReducer = (state = initialState, action) => {
 }
 
 export const setAuthParam = ({userId, login, email, isAuth = false}) => {
-    debugger
     return {
         type: SET_AUTH_PARAM,
         data: {userId, login, email, isAuth}
     }
 }
 
-export const isAuthing = () => {
-    debugger;
-    return (dispatch) => {
-        api.isAuthMe().then(data => {
-            if (data.resultCode === 0) {
-                let {id, login, email} = data.data
-                dispatch(setAuthParam({id, login, email, isAuth: true}));
-            }
-        })
-    }
+export const isAuthing = (dispatch) => {
+    api.isAuthMe().then(data => {
+        if (data.resultCode === 0) {
+            let {id, login, email} = data.data
+            dispatch(setAuthParam({userId: id, login, email, isAuth: true}));
+        }
+    })
 }
 
 export const login = (email, password, rememberMe) => {
-debugger
     return (dispatch) => {
         api.login(email, password, rememberMe)
             .then(response => {
-                console.log(response)
                 if  (response.data.resultCode === 0){
                     dispatch(isAuthing);
                 } else{
-                    console.log(response)
                     let errorMessage = response.data.messages.length > 0 ? response.data.messages[0] : "Error"
                     dispatch(stopSubmit('login', {_error: errorMessage }))
                 }
@@ -61,11 +54,10 @@ debugger
     }}
 
 export const logout = () => {
-    debugger;
     return (dispatch) => {
         api.logout().then(data => {
             if (data.resultCode === 0) {
-                dispatch(setAuthParam( null, null, null, false));
+                dispatch(setAuthParam( {userId:null, login: null, email: null, isAuth: false}));
             }
         })
     }

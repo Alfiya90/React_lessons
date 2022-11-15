@@ -75,7 +75,7 @@ let store={
         this.rerenderEntireTree=observer;
     },
     dispatch(action){
-        debugger
+
         this._state.messagePage=messageReducer(this._state.messagePage, action);
         this._state.profilePage=profileReducer(this._state.profilePage,action);
         debugger

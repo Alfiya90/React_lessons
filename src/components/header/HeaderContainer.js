@@ -7,17 +7,17 @@ import {connect} from "react-redux";
 import {api} from "../../api";
 
 class HeaderContainer extends React.Component {
-    componentDidMount() {
+   /* componentDidMount() {
         this.props.isAuthing()
-       /* api.isAuthMe().then(data=>
+       /!* api.isAuthMe().then(data=>
         {
-            debugger
+
             if (data.resultCode === 0) {
                 let {id,  login, email} = data.data
                 this.props.setAuthParam({id, login, email});
             }
-        })*/
-    }
+        })*!/
+    }*/
     render() {
         return <Header {...this.props}/>
     }

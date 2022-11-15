@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -11,13 +11,13 @@ export let rerenderEntireTree =(state)=> {
                              <App state={state}/>
                         </Provider>
                     </React.StrictMode>, document.getElementById('root'))
-   /* /!*console.log('rerender is working')
+   /!* /!*console.log('rerender is working')
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(*!/
         <React.StrictMode>
             <App  dateBase={dateBase} dispatch ={store.dispatch.bind(store)}/>
         </React.StrictMode>
-   /!* );*!/*/
+   /!* );*!/!*!/
 }
 
 rerenderEntireTree(store.getState());
@@ -29,4 +29,18 @@ store.subscribe(()=>{
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals();*/
+
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { Provider } from 'react-redux'
+import store from "./dataBase/storeRedux";
+import App from './App'
+
+// As of React 18
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+    <Provider store={store}>
+        <App state={store.getState()}/>
+    </Provider>
+)

@@ -12,6 +12,7 @@ import UsersContainer from './components/navBar/friends/UsersContainer'
 import SuperProfileContainer from "./components/content/posts/SuperProfileContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
 import Login from "./components/login/Login";
+import ProtectedRoute from "./components/common/main/ProtectedRoute";
 
 
 
@@ -21,20 +22,43 @@ import Login from "./components/login/Login";
 
 
 const App=({state})=> {
+
     return    (
         <BrowserRouter>
             <div className = 'app-wrapper'>
                 <HeaderContainer/>
-                <NavBar dialogData={state.messagePage}/>
+                <NavBar dialogData = {state.messagePage} state ={state}/>
                 <div className = 'app-wrapper-content'>
                     <Routes>
-                        <Route path = "/profile/:userId" element ={<SuperProfileContainer/>} />
-                        <Route path = "/dialogs" element={<SuperDialogsContainer/>} />
-                        <Route path = "/news" element ={<News/>} />
-                        <Route path = "/music" element ={<Musics/>}/>
-                        <Route path = "/setting" element={<Setting/>} />
-                        <Route path = "/users" element ={<UsersContainer/>} />
-                        <Route path = "/login" element ={<Login/>} />
+                        <Route path = "/profile/:userId" element = {
+                            <ProtectedRoute>
+                                <SuperProfileContainer/>
+                            </ProtectedRoute>
+                        } />
+                        <Route path = "/dialogs" element ={
+                            <ProtectedRoute>
+                                <SuperDialogsContainer/>
+                            </ProtectedRoute>} />
+                        <Route path = "/news" element = {
+                            <ProtectedRoute>
+                                 <News/>
+                            </ProtectedRoute>
+                            } />
+                        <Route path = "/music" element ={
+                            <ProtectedRoute>
+                                <Musics/>
+                            </ProtectedRoute>
+                        }/>
+                        <Route path = "/setting" element = {
+                            <ProtectedRoute>
+                                <Setting/>
+                            </ProtectedRoute>} />
+                        <Route path = "/users" element = {
+                            <ProtectedRoute>
+                                <UsersContainer/>
+                            </ProtectedRoute>
+                        } />
+                        <Route path = "/login" element = {<Login/>} />
                     </Routes>
                 </div>
             </div>

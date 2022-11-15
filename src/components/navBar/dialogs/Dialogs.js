@@ -7,7 +7,7 @@ import { ReduxDialogForm} from "./Message/DialogFormContainer";
 
 
 const Dialogs = ({dialogData, messageData,addMessage, isAuth}) => {
-    debugger;
+
 
     let dialogElements = dialogData
         .map((dialog) => (<DialogItem name={dialog.name} id={dialog.id} key ={dialog.id.toString()}/>));

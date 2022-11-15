@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 
 const DialogsContainer = () => {
-    debugger
+
     return (
         <StoreContext.Consumer>
             { (store)=>{

@@ -14,7 +14,6 @@ const ProfileInfo=(props)=>{
     if (!props.profile) {
         return <Preloader/>
     }
-    console.log(props.status)
     return (
         <div >
             <img className = {classes.image} src='https://www.hdwallpaperspulse.com/wp-content/uploads/2018/01/19/blue-sea-natural-image.jpg'
