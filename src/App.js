@@ -1,7 +1,6 @@
 import './App.css';
 import React from 'react';
 import Setting from './components/navBar/setting/Setting';
-import Header from './components/header/Header';
 import News from './components/navBar/news/News';
 import Musics from './components/navBar/Music/Musics';
 import NavBar from './components/navBar/NavBar';
@@ -15,14 +14,8 @@ import Login from "./components/login/Login";
 import ProtectedRoute from "./components/common/main/ProtectedRoute";
 
 
-
-
-
-
-
-
 const App=({state})=> {
-
+// необходимо реализовать индентификацию пользователя
     return    (
         <BrowserRouter>
             <div className = 'app-wrapper'>
@@ -38,7 +31,8 @@ const App=({state})=> {
                         <Route path = "/dialogs" element ={
                             <ProtectedRoute>
                                 <SuperDialogsContainer/>
-                            </ProtectedRoute>} />
+                            </ProtectedRoute>
+                        } />
                         <Route path = "/news" element = {
                             <ProtectedRoute>
                                  <News/>
@@ -52,11 +46,12 @@ const App=({state})=> {
                         <Route path = "/setting" element = {
                             <ProtectedRoute>
                                 <Setting/>
-                            </ProtectedRoute>} />
-                        <Route path = "/users" element = {
-                            <ProtectedRoute>
-                                <UsersContainer/>
                             </ProtectedRoute>
+                            } />
+                        <Route path = "/users" element = {
+                            /*<ProtectedRoute>*/
+                                <UsersContainer/>
+                            /*</ProtectedRoute>*/
                         } />
                         <Route path = "/login" element = {<Login/>} />
                     </Routes>
@@ -67,4 +62,6 @@ const App=({state})=> {
 
 }
 
+
 export default App;
+

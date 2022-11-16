@@ -16,3 +16,4 @@ export const withAuthRedirectComponent = (Component) => {
     }
     return connect(mapStateToProps)(RedirectComponent)
 }
+// для редиректа вместо НОС теперь используется компонента ProtectedRoute

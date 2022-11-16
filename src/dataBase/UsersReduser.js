@@ -13,36 +13,34 @@ let initialState ={
     users:[],
     totalUsersCount: 0,
     pageSize: 7,
-    currentPage:5,
+    currentPage:1,
     isLoading: false,
     isDisabling: []
 }
-
-let userReducer =(state=initialState, action)=>{
-    switch(action.type){
-        case SUBSCRIBE:{
+let userReducer =(state=initialState, action) => {
+    switch(action.type) {
+        case SUBSCRIBE: {
             return {...state,
-                    users: state.users.map(user=>{
-                        if(user.id===action.userId){
+                    users: state.users.map(user => {
+                        if(user.id === action.userId) {
                          return{...user, subscription: true}
-                    }return user
+                    } return user
             })
         }
         }
-        case UNSUBSCRIBE:{
+        case UNSUBSCRIBE: {
             return{...state,
-                    users: state.users.map(user=> {
-                        if( user.id===action.userId){
-                            return{...user, subscription:false}
+                    users: state.users.map(user => {
+                        if( user.id === action.userId){
+                            return {...user, subscription:false}
                         }return user
                     })
             }
         }
-        case SET_USERS:{
+        case SET_USERS : {
             return{...state,
                    users: [...action.users]}
         }
-        default: return  state;
 
         case SET_PAGE: {
             return {...state, currentPage: action.currentPage
@@ -56,74 +54,74 @@ let userReducer =(state=initialState, action)=>{
             return {...state, isLoading: action.isLoading}
         }
         case SET_IS_DISABLE: {
-            return {... state,
-                isDisabling: action.isDisabling ? [...state.isDisabling, action.userId]:
+            return {
+                ...state,
+                isDisabling: action.isDisabling ? [...state.isDisabling, action.userId] :
                     state.isDisabling.filter(id => id !== action.userId)
             }
         }
+        default: return  state;
         }
+    return state;
 }
 
-
-
-export const subscribeAC=(userId)=>{
+export const subscribeAC = (userId) => {
     return {type:SUBSCRIBE, userId}
 }
 
-export const unSubscribeAC=(userId)=>{
+export const unSubscribeAC = (userId) => {
     return {type:UNSUBSCRIBE, userId}
 }
 
-export const setUsersAC =(users)=>{
+export const setUsersAC = (users) => {
     return {type: SET_USERS,users}
 }
-export  const setCurrentPageAC=
-    (currentPage)=>{
-    return {type:SET_PAGE, currentPage }
+
+export const setCurrentPageAC = (currentPage) => {
+        return {type: SET_PAGE, currentPage}
 }
-export const setTotalUsersCountAC=(totalUsersCount)=>{
+
+export const setTotalUsersCountAC=(totalUsersCount) => {
     return {type:SET_TOTAL_USERS_COUNT, totalUsersCount}
 }
+
 export const setLoadingAC = (isLoading) => {
     return {type:SET_IS_LOADING, isLoading}
 }
+
 export const setDisabling = (isDisabling, userId) => {
     return {type: SET_IS_DISABLE, isDisabling, userId}
 }
-export const getUsersThunk = (currentPage, pageSize) => {
-    return (dispatch) => {
+
+export const getUsersThunk = (page, pageSize) => {
+    return async (dispatch) => {
         dispatch(setLoadingAC(true));
-        api.getUsers(currentPage, pageSize ).then(data => {
-            dispatch(setUsersAC(data.items));
-            dispatch(setTotalUsersCountAC(data.totalCount));
-            dispatch(setLoadingAC(false));
-        })
+        dispatch(setCurrentPageAC(page))
+        let data = await api.getUsers(page, pageSize )
+        dispatch(setUsersAC(data.items));
+        dispatch(setTotalUsersCountAC(data.totalCount));
+        dispatch(setLoadingAC(false));
     }}
 
-
-export const userDeleteThunk =(userId) => {
-    return (dispatch) => {
+export const userDeleteThunk = (userId) => {
+    return async (dispatch) => {
         dispatch(setDisabling(true, userId));
-        api.userDelete(userId)
-            .then((data) => {
-                if(data.resultCode === 0){
-                    dispatch(unSubscribeAC(userId))
-                }
-                dispatch(setDisabling(false, userId));
-            })
-}
-
+        let data = await api.userDelete(userId)
+        if(data.resultCode === 0) {
+            dispatch(unSubscribeAC(userId))
+        }
+        dispatch(setDisabling(false, userId));
+    }
 }
 
 export  const onUserSubscribeThunk = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setDisabling(true, userId));
-        api.onUserSubscribe(userId).then((data) => {
-            if (data.resultCode === 0) {
-                dispatch(subscribeAC(userId))
-            }
-            dispatch(setDisabling(false, userId));
-        })
+        let data = await api.onUserSubscribe(userId)
+        if (data.resultCode === 0) {
+            dispatch(subscribeAC(userId))
+        }
+        dispatch(setDisabling(false, userId));
     }
 }
 

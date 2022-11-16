@@ -4,6 +4,7 @@ import {Preloader} from "../../common/Preloader";
 import {Navigate} from "react-router";
 import ProfileStatus from "./ProfileStatus";
 import {api} from "../../../api";
+import ProfileStatusWithHook from "../posts/ProfileStatusWithHook";
 
 const ProfileInfo=(props)=>{
   /*  if (!props.isAuth){
@@ -25,7 +26,7 @@ const ProfileInfo=(props)=>{
                     <p>Status: {props.status}</p>
                 </div>
                 <div>
-                    <ProfileStatus status = {'Hello'} status = {props.status} updateStatus = {props.updateStatus}/>
+                    <ProfileStatusWithHook status = {'Hello'} status = {props.status} updateStatus = {props.updateStatus}/>
                 </div>
             </div>
 

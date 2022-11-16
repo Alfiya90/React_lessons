@@ -30,36 +30,33 @@ export const setAuthParam = ({userId, login, email, isAuth = false}) => {
     }
 }
 
-export const isAuthing = (dispatch) => {
-    api.isAuthMe().then(data => {
+export const isAuthing = async (dispatch) => {
+    let data = await api.isAuthMe()
         if (data.resultCode === 0) {
             let {id, login, email} = data.data
             dispatch(setAuthParam({userId: id, login, email, isAuth: true}));
         }
-    })
 }
 
 export const login = (email, password, rememberMe) => {
-    return (dispatch) => {
-        api.login(email, password, rememberMe)
-            .then(response => {
-                if  (response.data.resultCode === 0){
-                    dispatch(isAuthing);
-                } else{
-                    let errorMessage = response.data.messages.length > 0 ? response.data.messages[0] : "Error"
-                    dispatch(stopSubmit('login', {_error: errorMessage }))
-                }
+    return async (dispatch) => {
+        let response = await api.login(email, password, rememberMe)
+        if (response.data.resultCode === 0) {
+            dispatch(isAuthing);
+        } else {
+            let errorMessage = response.data.messages.length > 0 ? response.data.messages[0] : "Error"
+            dispatch(stopSubmit('login', {_error: errorMessage}))
+        }
 
-            } )
-    }}
+    }
+}
 
 export const logout = () => {
-    return (dispatch) => {
-        api.logout().then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setAuthParam( {userId:null, login: null, email: null, isAuth: false}));
-            }
-        })
+    return async (dispatch) => {
+        let data = await api.logout()
+        if (data.resultCode === 0) {
+            dispatch(setAuthParam({userId: null, login: null, email: null, isAuth: false}));
+        }
     }
 }
 export default authReducer;
