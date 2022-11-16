@@ -13,7 +13,7 @@ let initialState ={
     users:[],
     totalUsersCount: 0,
     pageSize: 7,
-    currentPage:5,
+    currentPage:1,
     isLoading: false,
     isDisabling: []
 }
@@ -90,10 +90,12 @@ export const setLoadingAC = (isLoading) => {
 export const setDisabling = (isDisabling, userId) => {
     return {type: SET_IS_DISABLE, isDisabling, userId}
 }
-export const getUsersThunk = (currentPage, pageSize) => {
+export const getUsersThunk = (page, pageSize) => {
     return (dispatch) => {
+        console.log(page)
         dispatch(setLoadingAC(true));
-        api.getUsers(currentPage, pageSize ).then(data => {
+        dispatch(setCurrentPageAC(page))
+        api.getUsers(page, pageSize ).then(data => {
             dispatch(setUsersAC(data.items));
             dispatch(setTotalUsersCountAC(data.totalCount));
             dispatch(setLoadingAC(false));

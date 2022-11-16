@@ -15,10 +15,10 @@ const Dialogs = ({dialogData, messageData,addMessage, isAuth}) => {
     let messageElements = messageData
         .map((message) => (<Message message={message.message} key ={message.dialogId.toString()}/>));
 
-
+/*
     if(!isAuth){
         return <Navigate to = {'/login'}/>
-    }
+    }*/
     let addNewMessage = (values) => {
         addMessage(values.newMessageBody)
     }

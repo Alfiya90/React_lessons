@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, {useEffect} from 'react';
 import Setting from './components/navBar/setting/Setting';
 import Header from './components/header/Header';
 import News from './components/navBar/news/News';
@@ -13,6 +13,10 @@ import SuperProfileContainer from "./components/content/posts/SuperProfileContai
 import HeaderContainer from "./components/header/HeaderContainer";
 import Login from "./components/login/Login";
 import ProtectedRoute from "./components/common/main/ProtectedRoute";
+import {connect} from "react-redux";
+import {isAuthing} from "./dataBase/authReducer";
+import {mapDispatchToPropsFactory} from "react-redux/es/connect/mapDispatchToProps";
+
 
 
 
@@ -22,7 +26,7 @@ import ProtectedRoute from "./components/common/main/ProtectedRoute";
 
 
 const App=({state})=> {
-
+// необходимо реализовать индентификацию пользователя
     return    (
         <BrowserRouter>
             <div className = 'app-wrapper'>
@@ -38,7 +42,8 @@ const App=({state})=> {
                         <Route path = "/dialogs" element ={
                             <ProtectedRoute>
                                 <SuperDialogsContainer/>
-                            </ProtectedRoute>} />
+                            </ProtectedRoute>
+                        } />
                         <Route path = "/news" element = {
                             <ProtectedRoute>
                                  <News/>
@@ -52,7 +57,8 @@ const App=({state})=> {
                         <Route path = "/setting" element = {
                             <ProtectedRoute>
                                 <Setting/>
-                            </ProtectedRoute>} />
+                            </ProtectedRoute>
+                            } />
                         <Route path = "/users" element = {
                             <ProtectedRoute>
                                 <UsersContainer/>
@@ -67,4 +73,6 @@ const App=({state})=> {
 
 }
 
+
 export default App;
+

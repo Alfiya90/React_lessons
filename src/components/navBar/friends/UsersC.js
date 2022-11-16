@@ -10,7 +10,7 @@ class UsersC extends React.Component{
             this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
         }
        onChangePage=(pageNumber)=>{
-            this.props.setCurrentPageAC(pageNumber)
+            /*this.props.setCurrentPageAC(pageNumber)*/
            this.props.getUsersThunk(pageNumber, this.props.pageSize)
         }
 
@@ -21,7 +21,7 @@ class UsersC extends React.Component{
                     <Users totalUsersCount = {this.props.totalUsersCount}
                            pageSize = {this.props.pageSize}
                            onChangePage ={this.onChangePage}
-
+                           currentPage = {this.props.currentPage}
                            users = {this.props.users}
                            isDisabling = {this.props.isDisabling}
                            setDisabling = {this.props.setDisabling}
