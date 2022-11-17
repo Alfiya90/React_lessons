@@ -2,7 +2,8 @@ import message from "../components/navBar/dialogs/Message/Message";
 
 const Counter = {
     messageId:4,
-    dialogId:14
+    dialogId:14,
+    id: 6
 }
 
 let initialState = {
@@ -24,11 +25,12 @@ let messageReducer =(state=initialState,action) => {
     switch (action.type) {
         case 'ADD_MESSAGE': {
             let newMessage = {
-            id:6,
+            id: Counter.id,
             message: action.newMessageBody,
             dialogId: Counter.dialogId
             }
             Counter.dialogId += 1;
+            Counter.id ++
             let copyState = {...state}
             copyState.messageData = [...state.messageData]
             copyState.messageData.push(newMessage);

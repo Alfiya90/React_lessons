@@ -1,5 +1,5 @@
 import React from 'react';
-import {updateNewMessageChar, addMessageActionCreator} from "../../../dataBase/MessageReducer";
+import {updateNewMessageChar, addMessageActionCreator, deleteMessageAC} from "../../../dataBase/MessageReducer";
 import Dialogs from "./Dialogs";
 import StoreContext from "../../../StoreContext";
 import {connect} from "react-redux";
@@ -8,7 +8,7 @@ import {withAuthRedirectComponent} from "../../hoc/withAuthRedirectComponent";
 
 const DialogsContainer = () => {
 
-    return (
+    /*return (
         <StoreContext.Consumer>
             { (store)=>{
                 let addAnswer =()=>{
@@ -16,19 +16,26 @@ const DialogsContainer = () => {
                     store.dispatch(updateNewMessageChar(''));
                 }
 
-                let onMessageChange =(text)=>{
+                let onMessageChange =(text) => {
                     store.dispatch(updateNewMessageChar(text));
                 }
+                let deleteMessage = (dialogId) => {
+                    debugger
+                    store.dispatch (deleteMessageAC(dialogId))
+                }
+
                 return(<Dialogs
                         updateNewMessageText={onMessageChange}
                         addMessage ={addAnswer}
                         dialogData={store.getState().messagePage.dialogData}
                         messageData={store.getState().messagePage.messageData}
                         isAuth = {store.getState().auth.isAuth}
+                        dialogId = {store.getState().messageData.id}
+                        deleteMessage = {deleteMessage}
                     />)
             }}
         </StoreContext.Consumer>
-    )
+    )*/
 }
 
 let mapStateProps=(state)=>{
@@ -37,7 +44,7 @@ let mapStateProps=(state)=>{
         dialogData: state.messagePage.dialogData,
         messageData: state.messagePage.messageData,
         isAuth: state.auth.isAuth,
-        newMessageBody: state.form.newMessageBody
+        newMessageBody: state.form.newMessageBody,
     }
 }
 let mapDispatchToProps=(dispatch)=>{
@@ -45,9 +52,12 @@ let mapDispatchToProps=(dispatch)=>{
         updateNewMessageText:(text)=>{
             dispatch(updateNewMessageChar(text));
         },
-        addMessage:(newMessageBody)=>{
+        addMessage:(newMessageBody) => {
             dispatch(addMessageActionCreator(newMessageBody));
             dispatch(updateNewMessageChar(''));
+        },
+        deleteMessage: (messageId) => {
+            dispatch (deleteMessageAC(messageId))
         }
     }
 }

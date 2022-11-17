@@ -1,6 +1,29 @@
+.userCard {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
 .avatar {
+    margin-top: 35px;
     width: 80px;
 }
 .selectedPage {
     font-weight: bolder;
 }
+
+.button {
+    border-radius: 40px;
+    background: lightblue;
+    border-color: skyblue;
+    padding: 2px;
+}
+.pagination {
+    display: flex;
+    margin: auto;
+    width: 100px;
+    align-items: center;
+    margin-left: 230px;
+}
+

@@ -17,26 +17,26 @@ let PaginatorOfUsers = ({isLoading, totalCount, pageSize, currentPage, onChangeP
     let rightPage = portionNumber * portionSize
     return (
         <div>
-            <div>
-            {portionNumber > 1 &&
-                <button onClick = {() => { setPortionNumbers(portionNumber - 1)
-                                           onChangePage(leftPage + portionSize)
+            <div className = {classes.pagination}>
+                {portionNumber > 1 &&
+                    <button className = {classes.button} onClick = {() => { setPortionNumbers(portionNumber - 1)
+                                               onChangePage(leftPage + portionSize)
 
-                }}>{'<'}</button>
-            }
-            {pages.filter(page => page >= leftPage && page <= rightPage)
-                .map( page => {return <a  className = { currentPage === page ? classes.selectedPage: null}    key = {page.toString()}
-                                            onClick={() => {
-                                                onChangePage(page)
-                                            }}>{page}
-                                      </a>})}
+                    }}>{'<'}</button>
+                }
+                {pages.filter(page => page >= leftPage && page <= rightPage)
+                    .map( page => {return <a  className = { currentPage === page ? classes.selectedPage: null}    key = {page.toString()}
+                                                onClick={() => {
+                                                    onChangePage(page)
+                                                }}>{page}
+                                          </a>})}
 
-            {portionCount > portionNumber &&
-                <button onClick = {() => {
-                    setPortionNumbers(portionNumber + 1)
-                    onChangePage(leftPage + portionSize)
-                    }}>{'>'}</button>
-            }
+                {portionCount > portionNumber &&
+                    <button className = {classes.button} onClick = {() => {
+                        setPortionNumbers(portionNumber + 1)
+                        onChangePage(leftPage + portionSize)
+                        }}>{'>'}</button>
+                }
             </div>
             <div>
                 {isLoading ? <Preloader/> : null}

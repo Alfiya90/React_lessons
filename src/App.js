@@ -1,5 +1,5 @@
+import React, {useEffect} from "react";
 import './App.css';
-import React from 'react';
 import Setting from './components/navBar/setting/Setting';
 import News from './components/navBar/news/News';
 import Musics from './components/navBar/Music/Musics';
@@ -12,56 +12,59 @@ import SuperProfileContainer from "./components/content/posts/SuperProfileContai
 import HeaderContainer from "./components/header/HeaderContainer";
 import Login from "./components/login/Login";
 import ProtectedRoute from "./components/common/main/ProtectedRoute";
+import {isAuthing} from "./dataBase/authReducer";
+import {connect} from "react-redux";
 
 
-const App=({state})=> {
-// необходимо реализовать индентификацию пользователя
-    return    (
-        <BrowserRouter>
-            <div className = 'app-wrapper'>
-                <HeaderContainer/>
-                <NavBar dialogData = {state.messagePage} state ={state}/>
-                <div className = 'app-wrapper-content'>
-                    <Routes>
-                        <Route path = "/profile/:userId" element = {
-                            <ProtectedRoute>
+const App = ({isAuthing}) => {
+   useEffect(() => {
+       isAuthing()
+   }, [])
+        return (
+            <BrowserRouter>
+                <div className='app-wrapper'>
+                    <HeaderContainer/>
+                    <NavBar/>
+                    <div className='app-wrapper-content'>
+                        <Routes>
+                            <Route path="/profile/:userId" element={
+                                // <ProtectedRoute>
                                 <SuperProfileContainer/>
-                            </ProtectedRoute>
-                        } />
-                        <Route path = "/dialogs" element ={
-                            <ProtectedRoute>
-                                <SuperDialogsContainer/>
-                            </ProtectedRoute>
-                        } />
-                        <Route path = "/news" element = {
-                            <ProtectedRoute>
-                                 <News/>
-                            </ProtectedRoute>
-                            } />
-                        <Route path = "/music" element ={
-                            <ProtectedRoute>
-                                <Musics/>
-                            </ProtectedRoute>
-                        }/>
-                        <Route path = "/setting" element = {
-                            <ProtectedRoute>
-                                <Setting/>
-                            </ProtectedRoute>
-                            } />
-                        <Route path = "/users" element = {
-                            /*<ProtectedRoute>*/
+                                //</ProtectedRoute>
+                            }/>
+                            <Route path="/dialogs" element={
+                                <ProtectedRoute>
+                                    <SuperDialogsContainer/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path="/news" element={
+                                <ProtectedRoute>
+                                    <News/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path="/music" element={
+                                <ProtectedRoute>
+                                    <Musics/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path="/setting" element={
+                                <ProtectedRoute>
+                                    <Setting/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path="/users" element={
+                                /*<ProtectedRoute>*/
                                 <UsersContainer/>
-                            /*</ProtectedRoute>*/
-                        } />
-                        <Route path = "/login" element = {<Login/>} />
-                    </Routes>
+                                /*</ProtectedRoute>*/
+                            }/>
+                            <Route path="/login" element={<Login/>}/>
+                        </Routes>
+                    </div>
                 </div>
-            </div>
-        </BrowserRouter>
-    )
+            </BrowserRouter>
+        )
+
 
 }
-
-
-export default App;
+export default connect(null, {isAuthing})(App);
 

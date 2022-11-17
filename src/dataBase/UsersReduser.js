@@ -12,7 +12,7 @@ const SET_IS_DISABLE = 'SET_IS_DISABLE'
 let initialState ={
     users:[],
     totalUsersCount: 0,
-    pageSize: 7,
+    pageSize: 12,
     currentPage:1,
     isLoading: false,
     isDisabling: []

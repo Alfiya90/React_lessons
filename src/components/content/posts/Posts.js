@@ -5,13 +5,17 @@ import {ReduxPostForm} from "./PostForm";
 
 
 
-const Posts = ({postData, addPost, updateNewPost, newPostChar, addPostBody }) =>{
-    let postElement = postData.map((post)=>(<Post message={post.message} key={post.messageId.toString()}/>));
+const Posts = ({postData, addPost,  deletePost }) =>{
+    console.log('Render')
+    console.log({postData})
+    let postElement = postData.map((post) => (<Post message={post.message} key={post.messageId.toString()}
+                                                    deletePost = {deletePost} id = {post.id} likes = {post.likes}/>));
 
 
     let addNewPost = (values) => {
         addPost(values.addPostBody)
     }
+
 
 
     return <div >

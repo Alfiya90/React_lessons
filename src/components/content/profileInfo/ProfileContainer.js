@@ -10,12 +10,12 @@ import {connect} from "react-redux";
 
 class ProfileContainer extends React.Component{
 
-    componentDidMount() {
+   /* componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response=>
         {
             this.props.setUserProfile(response.data);
         })
-    }
+    }*/
 
     render(){
         return(

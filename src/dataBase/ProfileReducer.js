@@ -1,8 +1,10 @@
 import {api} from "../api";
+import profile from "../components/content/Profile";
 
 const Counter = {
     messageId: 4,
-    dialogId: 14
+    dialogId: 14,
+    id: 5
 }
 
 let initialState = {
@@ -19,7 +21,7 @@ let profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case'ADD_POST': {
             let newPost = {
-                id: 6,
+                id: Counter.id,
                 message: action.addPostBody,
                 likes: 0,
                 messageId: Counter.messageId
@@ -27,6 +29,7 @@ let profileReducer = (state = initialState, action) => {
             let copyState = {...state}
             copyState.postData = [...state.postData]
             Counter.messageId += 1;
+            Counter.id ++
             copyState.postData.push(newPost);
             return copyState;
         }
@@ -48,6 +51,12 @@ let profileReducer = (state = initialState, action) => {
         case 'DELETE_POST': {
             return {
                 ...state, postData: state.postData.filter(post => post.id !== action.idPost )
+            }
+        }
+        case 'SAVE_PHOTO_SUCCESS': {
+            return {
+                ...state,
+                profile: {...profile, photos: action.photos}
             }
         }
         default:
@@ -87,6 +96,13 @@ export let setUserProfile = (profile) => {
 
     }
 }
+export let savePhotoSuccess = (photos) => {
+    return {
+        type: 'SAVE_PHOTO_SUCCESS',
+        photos
+
+    }
+}
 
 export const getUser = (userId) => {
     return async (dispatch) => {
@@ -109,7 +125,18 @@ export const updateStatus = (status) => {
             dispatch(setStatusAC(status))
         }
     }
+}
 
+export const savePhoto = (file) => {
+    debugger
+    return async (dispatch) => {
+        let data = await api.savePhoto(file)
+        console.log(data)
+        if (data.resultCode === 0) {
+
+            dispatch(savePhotoSuccess(data.data.photos))
+        }
+    }
 }
 
 export default profileReducer;

@@ -1,5 +1,9 @@
 import React from "react";
-import {updateNewPostCharActionCreator, addPostActionCreator} from "../../../dataBase/ProfileReducer";
+import {
+    updateNewPostCharActionCreator,
+    addPostActionCreator,
+    deletePostActionCreator
+} from "../../../dataBase/ProfileReducer";
 import Posts from './Posts'
 import StoreContext from "../../../StoreContext";
 import {connect} from "react-redux";
@@ -36,15 +40,18 @@ let mapStateToProps=(state)=>{
         }
 }
 
-let mapDispatchToProps=(dispatch)=>{
+let mapDispatchToProps=(dispatch) => {
         return{
             addPost: (addPostBody)=> {
                 dispatch(addPostActionCreator(addPostBody));
-                /*dispatch(updateNewPostCharActionCreator(''))*/
                 },
-            updateNewPost:(text)=>{
+            updateNewPost:(text) => {
                 dispatch(updateNewPostCharActionCreator(text));
+            },
+            deletePost: (idPost) => {
+                dispatch(deletePostActionCreator(idPost))
             }
+
 
         }
 }

@@ -5,10 +5,11 @@ import classes from './../Dialogs.module.css'
 
 
 
-const Message =({message})=>{
+const Message =({message, messageId, deleteMessage})=>{
     return(
         <div>
             {message}
+            <button onClick={() => {deleteMessage(messageId)}}>Delete</button>
         </div>
     )
 }

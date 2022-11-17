@@ -7,19 +7,22 @@ import {useNavigate} from "react-router";
 let OneUser = ({users, isDisabling, userDeleteThunk, onUserSubscribeThunk,   }) => {
     const navigate = useNavigate();
 
-    return <div>
+    return <div className={classes.userCard}>
             { users.map(user => <div key={user.id}>
                 <div>
                     <a onClick ={() => { navigate ('/profile/' + user.id)}} >
-                        <img src={user.photos.small != null ? user.photos.small : userPhoto} className={classes.avatar}/>
+                        <img src={user.photos.small != null ? user.photos.small : userPhoto}
+                             className={classes.avatar}/>
                     </a>
                 </div>
 
-                <div>
-                    {user.subscription ? <button disabled = {isDisabling.some(id => id === user.id)} onClick={() => {
+                <div >
+                    {user.subscription ? <button className = {classes.button} disabled = {isDisabling
+                            .some(id => id === user.id)} onClick={() => {
                             userDeleteThunk(user.id)
                         }}>Unsubscribe</button> :
-                        <button disabled = {isDisabling.some(id => id === user.id)} onClick={() => {
+                        <button className = {classes.button} disabled = {isDisabling
+                            .some(id => id === user.id)} onClick={() => {
                             onUserSubscribeThunk(user.id)
                         }}>Subscribe</button>}
                 </div>

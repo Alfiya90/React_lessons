@@ -6,14 +6,15 @@ import {Navigate} from "react-router";
 import { ReduxDialogForm} from "./Message/DialogFormContainer";
 
 
-const Dialogs = ({dialogData, messageData,addMessage, isAuth}) => {
+const Dialogs = ({dialogData, messageData,addMessage, deleteMessage}) => {
 
 
     let dialogElements = dialogData
-        .map((dialog) => (<DialogItem name={dialog.name} id={dialog.id} key ={dialog.id.toString()}/>));
+        .map((dialog) => (<DialogItem name={dialog.name} id={dialog.id} key ={dialog.id.toString()} />));
 
     let messageElements = messageData
-        .map((message) => (<Message message={message.message} key ={message.dialogId.toString()}/>));
+        .map((message) => (<Message message={message.message}  key ={message.dialogId.toString()}
+                                    messageId = {message.id} deleteMessage = {deleteMessage}/>));
 
 /*
     if(!isAuth){

@@ -40,7 +40,7 @@ export const api = {
             })
     },
     isAuthMe() {
-        return instance.get(`auth/me`,)
+        return instance.get(`auth/me`)
             .then(response => {
                 return response.data
             })
@@ -58,7 +58,7 @@ export const api = {
             })
     },
     login(email, password, rememberMe) {
-        return instance.post('auth/login', {email, password, rememberMe})
+        return instance.post('auth/login', {email, password, rememberMe })
             .then(response => {
                 return response
             })
@@ -67,6 +67,17 @@ export const api = {
         return instance.delete('auth/login',)
             .then(response => {
                 return response.data
+            })
+    },
+    savePhoto(photoFile){
+        let formData = new FormData();
+        formData.append("image", photoFile)
+        return instance.put('/profile/photo', formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }})
+            .then(responce => {
+                return responce.data
             })
     }
 
